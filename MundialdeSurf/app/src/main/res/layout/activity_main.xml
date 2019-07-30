@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        tools:context=".view.MainActivity"
+        android:fillViewport="true">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/rount_view"
+                android:text="Surfers"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:onClick="clickOnSurfers"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/rount_view"
+                android:text="New Surfer"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:onClick="clickOnNewSurfers"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/rount_view"
+                android:text="New Battery"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:onClick="clickOnNewBattery"/>
+
+    </LinearLayout>
+
+</ScrollView>
