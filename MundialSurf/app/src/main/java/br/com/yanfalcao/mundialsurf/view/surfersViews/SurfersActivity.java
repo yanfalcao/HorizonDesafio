@@ -8,7 +8,8 @@ import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.model.DataModel;
+import br.com.yanfalcao.mundialsurf.controller.SurferController;
+import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +19,13 @@ public class SurfersActivity extends ListActivity
         implements AdapterView.OnItemClickListener {
 
     ArrayList<Map<String, Object>> surfers;
-    private DataModel helper;
+    private DataBaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        helper = new DataModel(this);
+        helper = new DataBaseHelper(this);
 
         String[] in = {"id", "name", "country"};
         int[] to = {R.id.id, R.id.name, R.id.country};
@@ -56,7 +57,7 @@ public class SurfersActivity extends ListActivity
     }
 
     private List<Map<String, Object>> listSurfers() {
-        surfers = (ArrayList)helper.selectSurfers("id", "name", "country");
+        surfers = (ArrayList)SurferController.selectSurfers(helper,"id", "name", "country");
 
         return surfers;
     }
@@ -69,7 +70,7 @@ public class SurfersActivity extends ListActivity
 
     @Override
     protected void onDestroy(){
-        helper.dataDestroy();
+        helper.close();
         super.onDestroy();
     }
 }

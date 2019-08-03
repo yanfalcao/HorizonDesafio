@@ -22,7 +22,7 @@
         <activity android:name=".view.surfersViews.NewSurferActivity" />
         <activity android:name=".view.wavesViews.NewWaveActivity" />
         <activity android:name=".view.wavesViews.RegisterWaveActivity" />
-        <activity android:name=".view.notesViews.WavesChooseActivity"></activity>
+        <activity android:name=".view.notesViews.NewPunctuacionActivity"></activity>
     </application>
 
 </manifest>

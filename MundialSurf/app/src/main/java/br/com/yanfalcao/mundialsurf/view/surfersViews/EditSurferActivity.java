@@ -6,20 +6,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.model.DataModel;
+import br.com.yanfalcao.mundialsurf.controller.SurferController;
+import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
 
 public class EditSurferActivity extends AppCompatActivity {
 
     EditText name, country;
     String idSurfer, nameSurfer, countrySurfer;
-    DataModel helper;
+    DataBaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_surfer);
 
-        helper = new DataModel(this);
+        helper = new DataBaseHelper(this);
 
         idSurfer = getIntent().getStringExtra("id");
         countrySurfer = getIntent().getStringExtra("country");
@@ -36,14 +37,14 @@ public class EditSurferActivity extends AppCompatActivity {
         nameSurfer = name.getText().toString();
         countrySurfer = country.getText().toString();
 
-        if(helper.editSurfer(idSurfer, nameSurfer, countrySurfer))
+        if(SurferController.editSurfer(helper, idSurfer, nameSurfer, countrySurfer))
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
     }
 
     public void deleteSurfer(View view) {
-        if(! helper.deleteSurfer(idSurfer))
+        if(! SurferController.deleteSurfer(helper, idSurfer))
             Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
@@ -52,7 +53,7 @@ public class EditSurferActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy(){
-        helper.dataDestroy();
+        helper.close();
         super.onDestroy();
     }
 }

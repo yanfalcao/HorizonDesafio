@@ -6,11 +6,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.model.DataModel;
+import br.com.yanfalcao.mundialsurf.controller.SurferController;
+import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
 
 public class NewSurferActivity extends AppCompatActivity {
 
-    private DataModel helper;
+    private DataBaseHelper helper;
     private EditText name, country;
 
     @Override
@@ -18,14 +19,14 @@ public class NewSurferActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_surfer);
 
-        name = (EditText) findViewById(R.id.name);
-        country = (EditText) findViewById(R.id.country);
+        name = findViewById(R.id.name);
+        country = findViewById(R.id.country);
 
-        helper = new DataModel(this);
+        helper = new DataBaseHelper(this);
     }
 
     public void saveSurfer(View v){
-        if(helper.insertSurfer(name.getText().toString(), country.getText().toString()) != -1) {
+        if(SurferController.insertSurfer(helper ,name.getText().toString(), country.getText().toString()) != -1) {
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
             name.setText("");
             country.setText("");
@@ -36,7 +37,7 @@ public class NewSurferActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy(){
-        helper.dataDestroy();
+        helper.close();
         super.onDestroy();
     }
 }

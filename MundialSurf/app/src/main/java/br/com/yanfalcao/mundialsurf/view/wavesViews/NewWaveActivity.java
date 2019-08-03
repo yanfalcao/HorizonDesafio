@@ -8,29 +8,29 @@ import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.model.DataModel;
+import br.com.yanfalcao.mundialsurf.controller.BatteryController;
+import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class NewWaveActivity extends ListActivity
         implements AdapterView.OnItemClickListener {
 
-    private ArrayList<Map<String, Object>> batteries;
-    private DataModel helper;
+    private List<Map<String, Object>> batteries;
+    private DataBaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        batteries = new ArrayList<Map<String, Object>>();
-        helper = new DataModel(this);
+        helper = new DataBaseHelper(this);
+        batteries = getListBatteries();
 
         String[] in = {"idBattery", "surfer1", "surfer2"};
         int[] to = {R.id.idBattery, R.id.surfer1, R.id.surfer2};
 
-        SimpleAdapter adapter = new SimpleAdapter(this, listBatteries(), R.layout.activity_new_wave, in, to);
+        SimpleAdapter adapter = new SimpleAdapter(this, batteries, R.layout.activity_new_wave, in, to);
         setListAdapter(adapter);
         getListView().setOnItemClickListener(this);
     }
@@ -59,10 +59,8 @@ public class NewWaveActivity extends ListActivity
         }
     }
 
-    private List<Map<String, Object>> listBatteries() {
-        batteries = (ArrayList)helper.selectBatteries("idBattery", "surfer1", "surfer2");
-
-        return batteries;
+    private List<Map<String, Object>> getListBatteries() {
+        return BatteryController.selectBatteries(helper,"idBattery", "surfer1", "surfer2");
     }
 
     @Override
@@ -73,7 +71,7 @@ public class NewWaveActivity extends ListActivity
 
     @Override
     protected void onDestroy(){
-        helper.dataDestroy();
+        helper.close();
         super.onDestroy();
     }
 }

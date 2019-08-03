@@ -7,24 +7,22 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.controller.DataHelper;
-import br.com.yanfalcao.mundialsurf.model.DataModel;
+import br.com.yanfalcao.mundialsurf.controller.WaveController;
+import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class RegisterWaveActivity extends AppCompatActivity {
 
     private Spinner chooseSurfer;
     private ArrayList<String> surfers;
-    private DataModel helper;
+    private DataBaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_wave);
-        helper = new DataModel(this);
+        helper = new DataBaseHelper(this);
         surfers = getSurfers();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -46,9 +44,9 @@ public class RegisterWaveActivity extends AppCompatActivity {
         long result;
 
         if(getIntent().getStringExtra("nameSurferOne").equals(chooseSurfer.getSelectedItem().toString()))
-            result = helper.insertWave(getIntent().getStringExtra("idBattery"), getIntent().getStringExtra("idSurferOne"));
+            result = WaveController.insertWave(helper, getIntent().getStringExtra("idBattery"), getIntent().getStringExtra("idSurferOne"));
         else
-            result = helper.insertWave(getIntent().getStringExtra("idBattery"), getIntent().getStringExtra("idSurferTwo"));
+            result = WaveController.insertWave(helper, getIntent().getStringExtra("idBattery"), getIntent().getStringExtra("idSurferTwo"));
 
         if(result != -1)
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();

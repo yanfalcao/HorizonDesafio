@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.view.batteriesViews.NewBatteryActivity;
-import br.com.yanfalcao.mundialsurf.view.notesViews.WavesChooseActivity;
+import br.com.yanfalcao.mundialsurf.view.notesViews.NewPunctuacionActivity;
 import br.com.yanfalcao.mundialsurf.view.surfersViews.NewSurferActivity;
 import br.com.yanfalcao.mundialsurf.view.surfersViews.SurfersActivity;
 import br.com.yanfalcao.mundialsurf.view.wavesViews.NewWaveActivity;
@@ -29,5 +29,5 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickOnNewWave(View view) { startActivity(new Intent(this, NewWaveActivity.class)); }
 
-    public void clickOnNewPunctuation(View view) { startActivity(new Intent(this, WavesChooseActivity.class)); }
+    public void clickOnNewPunctuation(View view) { startActivity(new Intent(this, NewPunctuacionActivity.class)); }
 }
