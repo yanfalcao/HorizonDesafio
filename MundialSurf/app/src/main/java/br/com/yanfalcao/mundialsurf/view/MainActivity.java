@@ -30,4 +30,6 @@ public class MainActivity extends AppCompatActivity {
     public void clickOnNewWave(View view) { startActivity(new Intent(this, NewWaveActivity.class)); }
 
     public void clickOnNewPunctuation(View view) { startActivity(new Intent(this, NewPunctuacionActivity.class)); }
+
+    public void clickOnRecyclerView(View view) { startActivity(new Intent(this, RecyclerViewActivity.class)); }
 }
