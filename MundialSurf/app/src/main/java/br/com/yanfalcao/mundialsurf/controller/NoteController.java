@@ -33,4 +33,29 @@ public class NoteController {
         return result;
 
     }
+
+    public static List<String> selectNotesByWave(DataBaseHelper helper, String id){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT _id FROM nota WHERE onda_id = " + id,null);
+        ArrayList<String> list = new ArrayList<>();
+
+        if(! cursor.moveToNext())
+            return null;
+
+        for(int i=0; i < cursor.getCount(); i++){
+            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("_id"))));
+
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return list;
+    }
+
+    public static boolean deleteNoteByWave(DataBaseHelper helper, String id){
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String where [] = new String[]{ id };
+
+        return 0 < db.delete("nota", "onda_id = ?", where);
+    }
 }

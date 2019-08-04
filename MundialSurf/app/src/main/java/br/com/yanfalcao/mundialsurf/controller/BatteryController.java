@@ -62,6 +62,29 @@ public class BatteryController {
         return batteries;
     }
 
+    public static List<String> selectBatteriesBySurfer(DataBaseHelper helper, String id){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(String.format("SELECT _id " +
+                "FROM bateria " +
+                "WHERE surfista1 = " + id +
+                " OR surfista2 = " + id),null);
+        List<String> batteries = new ArrayList<>();
+
+        if(! cursor.moveToNext())
+            return null;
+
+        for(int i=0; i < cursor.getCount(); i++){
+            int idBat = cursor.getInt(cursor.getColumnIndex("_id"));
+
+            batteries.add(String.valueOf(idBat));
+
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return batteries;
+    }
+
     public static long insertBattery(DataBaseHelper helper, String surferOneId, String surferTwoId){
         SQLiteDatabase db = helper.getWritableDatabase();
 
@@ -75,5 +98,22 @@ public class BatteryController {
 
         return result;
 
+    }
+
+    public static boolean deleteBatteeriesBySurfer(DataBaseHelper helper, String id){
+        List<String> batteries = BatteryController.selectBatteriesBySurfer(helper, id);
+
+        if(batteries != null){
+            for(String i : batteries)
+                WaveController.deleteWaveByBattery(helper, i);
+
+            SQLiteDatabase db = helper.getWritableDatabase();
+            String where [] = new String[]{ id };
+            db.delete("bateria", "surfista1 = ?", where);
+            int result = db.delete("bateria", "surfista2 = ?", where);
+
+            return 0 < result;
+        }
+        return false;
     }
 }

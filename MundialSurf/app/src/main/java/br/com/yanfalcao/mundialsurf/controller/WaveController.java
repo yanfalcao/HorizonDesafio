@@ -49,11 +49,20 @@ public class WaveController {
         values.put("bateria_id", batteryId);
         values.put("surfista_id", surferId);
 
-        long result = db.insert("onda", null, values);
+        return db.insert("onda", null, values);
 
-        db.close();
+    }
 
-        return result;
+    public static boolean deleteWaveByBattery(DataBaseHelper helper, String id){
+        List<String> notes = NoteController.selectNotesByWave(helper, id);
 
+        if(notes != null)
+            for(String i : notes)
+                NoteController.deleteNoteByWave(helper, i);
+
+        SQLiteDatabase db = helper.getWritableDatabase();
+        String where [] = new String[]{ id };
+
+        return 0 < db.delete("onda", "bateria_id = ?", where);
     }
 }

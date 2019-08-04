@@ -88,7 +88,7 @@ public class SurferController {
         SQLiteDatabase db = helper.getWritableDatabase();
         String where [] = new String[]{ id };
 
-        db.delete("bateria", "surfista1 = ? OR surfista2 = ?", where);
+        BatteryController.deleteBatteeriesBySurfer(helper, id);
 
         int result = db.delete("surfista", "_id = ?", where);
 
