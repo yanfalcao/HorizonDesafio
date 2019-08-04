@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="New Surfer"
+                android:text="Edit Surfer"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="30sp"
                 android:textColor="@color/white"
@@ -60,16 +60,6 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:text="Edit"
-            android:textAlignment="center"/>
-
-        <Button
-            android:onClick="deleteSurfer"
-            android:background="@drawable/rount_button"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="Delete"
             android:textAlignment="center"/>
 
     </TableLayout>

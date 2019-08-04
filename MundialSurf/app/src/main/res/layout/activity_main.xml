@@ -33,19 +33,6 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:background="@drawable/rount_view"
-            android:text="New Surfer"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:onClick="clickOnNewSurfers"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/rount_view"
             android:text="New Battery"
             android:textSize="18sp"
             android:gravity="center"
@@ -77,19 +64,6 @@
             android:gravity="center"
             android:textColor="@color/black"
             android:onClick="clickOnNewPunctuation"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/rount_view"
-            android:text="Recycler View"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:onClick="clickOnRecyclerView"/>
 
     </LinearLayout>
 

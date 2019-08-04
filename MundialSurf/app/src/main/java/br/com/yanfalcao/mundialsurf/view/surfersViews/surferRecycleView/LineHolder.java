@@ -1,7 +1,8 @@
-package br.com.yanfalcao.mundialsurf.view;
+package br.com.yanfalcao.mundialsurf.view.surfersViews.surferRecycleView;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -12,11 +13,15 @@ public class LineHolder extends RecyclerView.ViewHolder{
     public TextView id;
     public TextView name;
     public TextView country;
+    public ImageView setting;
+    public ImageView trash;
 
     public LineHolder(View itemView) {
         super(itemView);
         id = itemView.findViewById(R.id.idd);
         name = itemView.findViewById(R.id.namee);
         country = itemView.findViewById(R.id.countryy);
+        setting = itemView.findViewById(R.id.setting);
+        trash = itemView.findViewById(R.id.trash);
     }
 }

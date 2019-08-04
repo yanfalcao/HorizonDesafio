@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view;
+package br.com.yanfalcao.mundialsurf.view.surfersViews;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +11,9 @@ import android.view.View;
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.SurferController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
-import br.com.yanfalcao.mundialsurf.view.surfersViews.NewSurferActivity;
+import br.com.yanfalcao.mundialsurf.view.surfersViews.surferRecycleView.LineAdapterSurfer;
 
-public class RecyclerViewActivity extends AppCompatActivity {
+public class SurfersListActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
     private LineAdapterSurfer mAdapter;
@@ -22,8 +22,12 @@ public class RecyclerViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_view);
+        setContentView(R.layout.activity_surfers_list);
 
+        setupRecycler();
+    }
+
+    private void setupRecycler(){
         mRecyclerView = findViewById(R.id.recycler_view_layout);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new LineAdapterSurfer(SurferController.selectSurfers(new DataBaseHelper(this), "id", "name", "country"));
