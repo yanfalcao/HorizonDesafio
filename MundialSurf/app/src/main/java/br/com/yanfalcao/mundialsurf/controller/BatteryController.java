@@ -20,6 +20,50 @@ public class BatteryController {
                 "FOREIGN KEY(surfista2) REFERENCES surfista(_id));");
     }
 
+    public static int getWinner(DataBaseHelper helper, String id){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Double noteSurfer1 = 0.0;
+        Double noteSurfer2 = 0.0;
+        Cursor cursor = db.rawQuery("SELECT ((n.notaparcial1 + n.notaparcial2 + n.notaparcial3)/3) AS media " +
+                "FROM bateria b, onda o, nota n " +
+                "WHERE b._id = " + id +
+                " AND b._id = o.bateria_id " +
+                "AND o.surfista_id = b.surfista1 " +
+                "AND o._id = n.onda_id " +
+                "ORDER BY media DESC", null);
+
+        if(cursor.getCount() < 2)
+            return -1;
+        else{
+            cursor.moveToNext();
+            noteSurfer1 += cursor.getDouble(cursor.getColumnIndex("media"));
+            cursor.moveToNext();
+            noteSurfer1 += cursor.getDouble(cursor.getColumnIndex("media"));
+        }
+
+        cursor = db.rawQuery("SELECT ((n.notaparcial1 + n.notaparcial2 + n.notaparcial3)/3) AS media " +
+                "FROM bateria b, onda o, nota n " +
+                "WHERE b._id = " + id +
+                " AND b._id = o.bateria_id " +
+                "AND o.surfista_id = b.surfista2 " +
+                "AND o._id = n.onda_id " +
+                "ORDER BY media DESC", null);
+
+        if(cursor.getCount() < 2)
+            return -2;
+        else{
+            cursor.moveToNext();
+            noteSurfer2 += cursor.getDouble(cursor.getColumnIndex("media"));
+            cursor.moveToNext();
+            noteSurfer2 += cursor.getDouble(cursor.getColumnIndex("media"));
+        }
+
+        if(noteSurfer1 > noteSurfer2)
+            return 1;
+        else
+            return 2;
+    }
+
     public static List<Map<String, Object>> selectBatteries(DataBaseHelper helper, String id, String surferOne, String surferTwo){
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery(String.format("SELECT bat._id, bat.surfista1, bat.surfista2, s1.nome as surfistaUm, s2.nome as surfistaDois " +

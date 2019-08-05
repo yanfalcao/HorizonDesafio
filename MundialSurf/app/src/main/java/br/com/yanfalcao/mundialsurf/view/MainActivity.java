@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.view.batteriesViews.NewBatteryActivity;
+import br.com.yanfalcao.mundialsurf.view.batteriesViews.winnerViews.BatteryListActivity;
 import br.com.yanfalcao.mundialsurf.view.notesViews.NewPunctuacionActivity;
 import br.com.yanfalcao.mundialsurf.view.surfersViews.NewSurferActivity;
 import br.com.yanfalcao.mundialsurf.view.surfersViews.SurfersListActivity;
@@ -26,4 +27,6 @@ public class MainActivity extends AppCompatActivity {
     public void clickOnNewPunctuation(View view) { startActivity(new Intent(this, NewPunctuacionActivity.class)); }
 
     public void clickOnSurfers(View view) { startActivity(new Intent(this, SurfersListActivity.class)); }
+
+    public void clickOnWinner(View view) { startActivity(new Intent(this, BatteryListActivity.class)); }
 }
