@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
         <activity android:name=".view.notesViews.NewPunctuacionActivity" />
         <activity android:name=".view.surfersViews.SurfersListActivity" />
         <activity android:name=".view.batteriesViews.winnerViews.WinnerActivity" />
-        <activity android:name=".view.batteriesViews.winnerViews.BatteryListActivity"></activity>
+        <activity android:name=".view.batteriesViews.winnerViews.BatteryListActivity" />
     </application>
 
 </manifest>
