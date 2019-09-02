@@ -15,10 +15,12 @@ import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.view.surfersViews.SurfersListActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainMenu extends AppCompatActivity {
 
-    ViewPager viewPager;
+    @BindView(R.id.viewPager) ViewPager viewPager;
     PagerAdapter adapter;
     List<Map<String, Object>> models;
     Integer[] colors = null;
@@ -28,13 +30,13 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        ButterKnife.bind(this);
 
         modelInicialize();
         colorsInicialize();
 
         adapter = new MainMenuAdapter(models, this);
 
-        viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);
         viewPager.setPadding(130, 0, 130, 0);
 

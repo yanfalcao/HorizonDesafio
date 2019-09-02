@@ -8,14 +8,16 @@ import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.BatteryController;
 import br.com.yanfalcao.mundialsurf.controller.SurferController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 public class NewBatteryActivity extends AppCompatActivity {
 
-    private Spinner surferOne;
-    private Spinner surferTwo;
+    @BindView(R.id.surferOne) Spinner surferOne;
+    @BindView(R.id.surferTwo) Spinner surferTwo;
     private ArrayList<Map<String, Object>> surfers;
     private DataBaseHelper helper;
 
@@ -23,6 +25,7 @@ public class NewBatteryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_battery);
+        ButterKnife.bind(this);
 
         helper = new DataBaseHelper(this);
         surfers = (ArrayList) SurferController.selectSurfers(helper,"id", "name", "country");
@@ -30,8 +33,6 @@ public class NewBatteryActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 SurferController.getSurfersName(surfers));
-        surferOne = findViewById(R.id.surferOne);
-        surferTwo = findViewById(R.id.surferTwo);
 
         surferOne.setAdapter(adapter);
         surferTwo.setAdapter(adapter);

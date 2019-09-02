@@ -44,28 +44,31 @@ public class LineAdapterSurfer extends RecyclerView.Adapter<LineHolder> implemen
         holder.id.setText(mUsers.get(i).get("id").toString());
         holder.name.setText(mUsers.get(i).get("name").toString());
         holder.country.setText(mUsers.get(i).get("country").toString());
-        holder.setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), EditSurferActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("id", mUsers.get(i).get("id").toString());
-                extras.putString("name", mUsers.get(i).get("name").toString());
-                extras.putString("country", mUsers.get(i).get("country").toString());
 
-                intent.putExtras(extras);
-                v.getContext().startActivity(intent);
-            }
-        });
-        holder.trash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SurferController.deleteSurfer(new DataBaseHelper(v.getContext()), mUsers.get(i).get("id").toString());
-                mUsers.remove(i);
-                notifyItemRemoved(i);
-                notifyItemChanged(i, mUsers.size());
-            }
-        });
+        if(mUsers.get(i).get("name").toString() != "Empty"){
+            holder.setting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), EditSurferActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("id", mUsers.get(i).get("id").toString());
+                    extras.putString("name", mUsers.get(i).get("name").toString());
+                    extras.putString("country", mUsers.get(i).get("country").toString());
+
+                    intent.putExtras(extras);
+                    v.getContext().startActivity(intent);
+                }
+            });
+            holder.trash.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SurferController.deleteSurfer(new DataBaseHelper(v.getContext()), mUsers.get(i).get("id").toString());
+                    mUsers.remove(i);
+                    notifyItemRemoved(i);
+                    notifyItemChanged(i, mUsers.size());
+                }
+            });
+        }
     }
 
     @Override

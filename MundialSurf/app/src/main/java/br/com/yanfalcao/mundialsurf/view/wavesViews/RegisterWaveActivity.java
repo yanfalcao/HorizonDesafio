@@ -9,12 +9,14 @@ import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.WaveController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import java.util.ArrayList;
 
 public class RegisterWaveActivity extends AppCompatActivity {
 
-    private Spinner chooseSurfer;
+    @BindView(R.id.chooseSurfer) Spinner chooseSurfer;
     private ArrayList<String> surfers;
     private DataBaseHelper helper;
 
@@ -22,13 +24,14 @@ public class RegisterWaveActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_wave);
+        ButterKnife.bind(this);
+
         helper = new DataBaseHelper(this);
         surfers = getSurfers();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 surfers);
-        chooseSurfer = findViewById(R.id.chooseSurfer);
         chooseSurfer.setAdapter(adapter);
     }
 
@@ -52,7 +55,5 @@ public class RegisterWaveActivity extends AppCompatActivity {
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "DataBase Error", Toast.LENGTH_SHORT).show();
-
-        finish();
     }
 }

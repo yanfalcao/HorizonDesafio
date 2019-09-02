@@ -10,6 +10,8 @@ import br.com.yanfalcao.mundialsurf.R;
 
 public class LineHolder extends RecyclerView.ViewHolder{
 
+
+
     public TextView id;
     public TextView name;
     public TextView country;

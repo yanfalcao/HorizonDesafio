@@ -40,29 +40,32 @@ public class LineAdapterBattery extends RecyclerView.Adapter<LineHolderBattery> 
         holder.id.setText(mUsers.get(i).get("id").toString());
         holder.surferOne.setText(mUsers.get(i).get("surferOne").toString());
         holder.surferTwo.setText(mUsers.get(i).get("surferTwo").toString());
-        holder.podio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), WinnerActivity.class);
-                Bundle extras = new Bundle();
 
-                int result = BatteryController.getWinner(new DataBaseHelper(v.getContext()), mUsers.get(i).get("id").toString());
+        if(mUsers.get(i).get("surferOne").toString() != "Empty"){
+            holder.podio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), WinnerActivity.class);
+                    Bundle extras = new Bundle();
 
-                if(result == -1)
-                    Toast.makeText(v.getContext(), "SURFER ONE NEED MORE NOTES", Toast.LENGTH_SHORT).show();
-                else if(result == -2)
-                    Toast.makeText(v.getContext(), "SURFER TWO NEED MORE NOTES", Toast.LENGTH_SHORT).show();
-                else if(result == 1){
-                    extras.putString("winner", mUsers.get(i).get("surferOne").toString());
-                    intent.putExtras(extras);
-                    v.getContext().startActivity(intent);
+                    int result = BatteryController.getWinner(new DataBaseHelper(v.getContext()), mUsers.get(i).get("id").toString());
+
+                    if(result == -1)
+                        Toast.makeText(v.getContext(), "SURFER ONE NEED MORE NOTES", Toast.LENGTH_SHORT).show();
+                    else if(result == -2)
+                        Toast.makeText(v.getContext(), "SURFER TWO NEED MORE NOTES", Toast.LENGTH_SHORT).show();
+                    else if(result == 1){
+                        extras.putString("winner", mUsers.get(i).get("surferOne").toString());
+                        intent.putExtras(extras);
+                        v.getContext().startActivity(intent);
+                    }
+                    else{
+                        extras.putString("winner", mUsers.get(i).get("surferTwo").toString());
+                        intent.putExtras(extras);
+                        v.getContext().startActivity(intent);
+                    }
                 }
-                else{
-                    extras.putString("winner", mUsers.get(i).get("surferTwo").toString());
-                    intent.putExtras(extras);
-                    v.getContext().startActivity(intent);
-                }
-            }
-        });
+            });
+        }
     }
 }

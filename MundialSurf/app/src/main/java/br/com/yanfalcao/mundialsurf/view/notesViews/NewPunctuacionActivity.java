@@ -14,29 +14,30 @@ import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.NoteController;
 import br.com.yanfalcao.mundialsurf.controller.WaveController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class NewPunctuacionActivity extends AppCompatActivity {
 
-    private Spinner wave;
+    @BindView(R.id.Waves) Spinner wave;
     private ArrayList<String> waves;
-    private EditText n1, n2, n3;
+    @BindView(R.id.note1) EditText n1;
+    @BindView(R.id.note2) EditText n2;
+    @BindView(R.id.note3) EditText n3;
     private DataBaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_punctuation);
+        ButterKnife.bind(this);
 
         helper = new DataBaseHelper(this);
-        waves = (ArrayList) WaveController.selectWavesId(helper);
-        n1 = findViewById(R.id.note1);
-        n2 = findViewById(R.id.note2);
-        n3 = findViewById(R.id.note3);
+        waves = (ArrayList) WaveController.selectWavesWithSurferName(helper);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item,
                 waves);
-        wave = findViewById(R.id.Waves);
 
         wave.setAdapter(adapter);
     }
@@ -49,7 +50,7 @@ public class NewPunctuacionActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Data " + w + " notes" + n1 + " " + n2 + " " + n3, Toast.LENGTH_SHORT).show();
 
-        if(NoteController.insertNote(helper, w, note1, note2, note3) != -1)
+        if(NoteController.insertNote(helper, w.split("-")[0], note1, note2, note3) != -1)
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "DataBase Error", Toast.LENGTH_SHORT).show();

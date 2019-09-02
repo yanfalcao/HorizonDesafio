@@ -20,5 +20,6 @@
     <color name="wave">#74b9ff</color>
     <color name="score">#55efc4</color>
     <color name="win">#ffeaa7</color>
+    <color name="floatingButton">#0984e3</color>
 
 </resources>

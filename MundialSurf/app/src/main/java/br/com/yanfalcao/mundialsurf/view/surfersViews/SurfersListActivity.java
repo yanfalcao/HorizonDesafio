@@ -19,10 +19,13 @@ import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.SurferController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
 import br.com.yanfalcao.mundialsurf.view.surfersViews.surferRecycleView.LineAdapterSurfer;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class SurfersListActivity extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
+    @BindView(R.id.recycler_view_layout) RecyclerView mRecyclerView;
+    @BindView(R.id.toolbar) Toolbar toolbar;
     private LineAdapterSurfer mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -30,8 +33,8 @@ public class SurfersListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_surfers_list);
+        ButterKnife.bind(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Surfers");
 
@@ -39,7 +42,6 @@ public class SurfersListActivity extends AppCompatActivity {
     }
 
     private void setupRecycler(){
-        mRecyclerView = findViewById(R.id.recycler_view_layout);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new LineAdapterSurfer(SurferController.selectSurfers(new DataBaseHelper(this), "id", "name", "country"));
 

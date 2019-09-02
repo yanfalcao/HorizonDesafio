@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="60dp"
+    android:layout_marginTop="12dp"
     android:orientation="horizontal"
     android:background="@drawable/rount_edit_text">
 
@@ -83,14 +84,14 @@
             android:layout_toStartOf="@id/trash"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/icons_settings" />
+            android:src="@drawable/icons_edit" />
 
         <ImageView
             android:id="@+id/trash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:layout_marginRight="5dp"
             android:contentDescription="TODO"
             android:src="@drawable/icons_trash" />

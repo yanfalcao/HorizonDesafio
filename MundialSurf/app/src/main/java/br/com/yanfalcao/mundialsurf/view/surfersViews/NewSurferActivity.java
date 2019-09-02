@@ -8,19 +8,20 @@ import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.SurferController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class NewSurferActivity extends AppCompatActivity {
 
     private DataBaseHelper helper;
-    private EditText name, country;
+    @BindView(R.id.name) EditText name;
+    @BindView(R.id.country) EditText country;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_surfer);
-
-        name = findViewById(R.id.name);
-        country = findViewById(R.id.country);
+        ButterKnife.bind(this);
 
         helper = new DataBaseHelper(this);
     }

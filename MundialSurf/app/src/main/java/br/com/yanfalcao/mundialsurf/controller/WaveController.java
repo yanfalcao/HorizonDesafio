@@ -18,9 +18,9 @@ public class WaveController {
                 "FOREIGN KEY(surfista_id) REFERENCES surfista(_id));");
     }
 
-    public static List<String> selectWavesId(DataBaseHelper helper){
+    public static List<String> selectWavesWithSurferName(DataBaseHelper helper){
         SQLiteDatabase db = helper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT _id FROM onda ",null);
+        Cursor cursor = db.rawQuery("SELECT onda._id, surfista.nome FROM onda, surfista WHERE surfista._id = onda.surfista_id ",null);
         ArrayList<String> list = new ArrayList<String>();
 
         if(! cursor.moveToNext()){
@@ -32,7 +32,7 @@ public class WaveController {
         }
 
         for(int i=0; i < cursor.getCount(); i++){
-            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("_id"))));
+            list.add(String.valueOf(cursor.getInt(cursor.getColumnIndex("_id"))) + " - " + cursor.getString(cursor.getColumnIndex("nome")));
 
             cursor.moveToNext();
         }
