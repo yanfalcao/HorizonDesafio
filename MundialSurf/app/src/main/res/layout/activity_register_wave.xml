@@ -46,6 +46,47 @@
 
         </Spinner>
 
+        <TextView
+            style="@style/TextView"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"
+            android:text="Punctuation One"/>
+
+        <EditText
+            android:id="@+id/noteOneEditText"
+            style="@style/TextView"
+            android:inputType="numberDecimal"
+            android:height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            style="@style/TextView"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"
+            android:text="Punctuation Two"/>
+
+        <EditText
+            android:id="@+id/noteTwoEditText"
+            style="@style/TextView"
+            android:inputType="numberDecimal"
+            android:height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            style="@style/TextView"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="5dp"
+            android:text="Punctuation Three"/>
+
+        <EditText
+            android:id="@+id/noteThreeEditText"
+            style="@style/TextView"
+            android:inputType="numberDecimal"
+            android:height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"/>
 
         <Button
             android:id="@+id/save"

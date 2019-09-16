@@ -85,11 +85,6 @@ public class MainMenu extends AppCompatActivity {
         models.add(item);
 
         item = new HashMap<>();
-        item.put("IMAGE", R.drawable.punctuacion);
-        item.put("TITLE", "Score Register");
-        models.add(item);
-
-        item = new HashMap<>();
         item.put("IMAGE", R.drawable.win);
         item.put("TITLE", "Winner");
         models.add(item);
@@ -100,7 +95,6 @@ public class MainMenu extends AppCompatActivity {
                 getResources().getColor(R.color.surfer),
                 getResources().getColor(R.color.battery),
                 getResources().getColor(R.color.wave),
-                getResources().getColor(R.color.score),
                 getResources().getColor(R.color.win)
         };
 

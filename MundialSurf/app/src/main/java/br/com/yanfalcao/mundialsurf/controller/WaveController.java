@@ -18,6 +18,16 @@ public class WaveController {
                 "FOREIGN KEY(surfista_id) REFERENCES surfista(_id));");
     }
 
+    public static int selectLastWaveId(DataBaseHelper helper){
+        SQLiteDatabase db = helper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT _id FROM onda ORDER BY _id desc", null);
+
+        if(! cursor.moveToNext())
+            return Integer.parseInt(null);
+
+        return cursor.getInt(cursor.getColumnIndex("_id"));
+    }
+
     public static List<String> selectWavesWithSurferName(DataBaseHelper helper){
         SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT onda._id, surfista.nome FROM onda, surfista WHERE surfista._id = onda.surfista_id ",null);

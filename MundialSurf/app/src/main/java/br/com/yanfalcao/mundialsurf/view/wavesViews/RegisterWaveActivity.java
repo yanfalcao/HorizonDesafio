@@ -4,9 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
+import br.com.yanfalcao.mundialsurf.controller.NoteController;
 import br.com.yanfalcao.mundialsurf.controller.WaveController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
 import butterknife.BindView;
@@ -17,6 +19,9 @@ import java.util.ArrayList;
 public class RegisterWaveActivity extends AppCompatActivity {
 
     @BindView(R.id.chooseSurfer) Spinner chooseSurfer;
+    @BindView(R.id.noteOneEditText) EditText noteOne;
+    @BindView(R.id.noteTwoEditText) EditText noteTwo;
+    @BindView(R.id.noteThreeEditText) EditText noteThree;
     private ArrayList<String> surfers;
     private DataBaseHelper helper;
 
@@ -44,14 +49,20 @@ public class RegisterWaveActivity extends AppCompatActivity {
     }
 
     public void saveWave(View view) {
-        long result;
+        long result, resultNote;
 
         if(getIntent().getStringExtra("nameSurferOne").equals(chooseSurfer.getSelectedItem().toString()))
             result = WaveController.insertWave(helper, getIntent().getStringExtra("idBattery"), getIntent().getStringExtra("idSurferOne"));
         else
             result = WaveController.insertWave(helper, getIntent().getStringExtra("idBattery"), getIntent().getStringExtra("idSurferTwo"));
 
-        if(result != -1)
+        resultNote = NoteController.insertNote(helper,
+                                                Integer.toString(WaveController.selectLastWaveId(helper)),
+                                                noteOne.getText().toString(),
+                                                noteTwo.getText().toString(),
+                                                noteThree.getText().toString());
+
+        if(result != -1 && resultNote != -1)
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "DataBase Error", Toast.LENGTH_SHORT).show();

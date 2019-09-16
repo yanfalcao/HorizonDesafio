@@ -16,7 +16,6 @@ import java.util.Map;
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.view.batteriesViews.NewBatteryActivity;
 import br.com.yanfalcao.mundialsurf.view.batteriesViews.winnerViews.BatteryListActivity;
-import br.com.yanfalcao.mundialsurf.view.notesViews.NewPunctuacionActivity;
 import br.com.yanfalcao.mundialsurf.view.surfersViews.SurfersListActivity;
 import br.com.yanfalcao.mundialsurf.view.wavesViews.NewWaveActivity;
 
@@ -70,10 +69,6 @@ public class MainMenuAdapter extends PagerAdapter {
                         break;
 
                     case 3:
-                        context.startActivity(new Intent(context, NewPunctuacionActivity.class));
-                        break;
-
-                    case 4:
                         context.startActivity(new Intent(context, BatteryListActivity.class));
                         break;
                 }
