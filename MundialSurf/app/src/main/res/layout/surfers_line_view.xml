@@ -4,8 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:layout_marginTop="12dp"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp"
     android:orientation="horizontal"
-    android:background="@drawable/rount_edit_text">
+    android:background="@drawable/rount_list_surfer">
 
     <LinearLayout
         android:layout_width="40dp"
