@@ -47,8 +47,6 @@ public class SurfersListActivity extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.addItemDecoration(
-                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
     public void clickOnNewSurfers(View view) { startActivity(new Intent(this, NewSurferActivity.class)); }
@@ -85,8 +83,6 @@ public class SurfersListActivity extends AppCompatActivity {
         mRecyclerView.invalidate();
         mRecyclerView.setAdapter(null);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.addItemDecoration(
-                new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         super.onRestart();
     }
 }
