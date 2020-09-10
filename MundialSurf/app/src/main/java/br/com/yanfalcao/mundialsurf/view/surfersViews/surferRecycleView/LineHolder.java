@@ -10,9 +10,6 @@ import br.com.yanfalcao.mundialsurf.R;
 
 public class LineHolder extends RecyclerView.ViewHolder{
 
-
-
-    public TextView id;
     public TextView name;
     public TextView country;
     public ImageView setting;
@@ -20,7 +17,6 @@ public class LineHolder extends RecyclerView.ViewHolder{
 
     public LineHolder(View itemView) {
         super(itemView);
-        id = itemView.findViewById(R.id.idd);
         name = itemView.findViewById(R.id.namee);
         country = itemView.findViewById(R.id.countryy);
         setting = itemView.findViewById(R.id.setting);

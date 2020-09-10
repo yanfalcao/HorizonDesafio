@@ -41,7 +41,6 @@ public class LineAdapterSurfer extends RecyclerView.Adapter<LineHolder> implemen
 
     @Override
     public void onBindViewHolder(LineHolder holder, final int i) {
-        holder.id.setText(mUsers.get(i).get("id").toString());
         holder.name.setText(mUsers.get(i).get("name").toString());
         holder.country.setText(mUsers.get(i).get("country").toString());
 

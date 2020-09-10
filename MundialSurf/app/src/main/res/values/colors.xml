@@ -10,6 +10,8 @@
     <color name="colorLightGreen">#7bed9f</color>
     <color name="colorDarkGreen">#2ed573</color>
     <color name="colorLightBlue">#70a1ff</color>
+    <color name="superLightBlue">#C2D7FF</color>
+    <color name="superLightYellow">#FFF5A8</color>
     <color name="colorMediumBlue">#5352ed</color>
     <color name="colorDarkBlue">#5352ed</color>
     <color name="white">#ffffff</color>
@@ -22,5 +24,6 @@
     <color name="win">#ffeaa7</color>
     <color name="floatingButton">#0984e3</color>
     <color name="listSurfer">#132D7D</color>
+    <color name="backgoundScreen">#F4F4F4</color>
 
 </resources>
