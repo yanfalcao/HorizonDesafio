@@ -43,6 +43,7 @@ public class LineAdapterSurfer extends RecyclerView.Adapter<LineHolder> implemen
     public void onBindViewHolder(LineHolder holder, final int i) {
         holder.name.setText(mUsers.get(i).get("name").toString());
         holder.country.setText(mUsers.get(i).get("country").toString());
+        holder.avatarImage.setImageResource(getAvatarImage(i));
 
         if(mUsers.get(i).get("name").toString() != "Empty"){
             holder.setting.setOnClickListener(new View.OnClickListener() {
@@ -105,4 +106,18 @@ public class LineAdapterSurfer extends RecyclerView.Adapter<LineHolder> implemen
             notifyDataSetChanged();
         }
     };
+
+    private int getAvatarImage(int position){
+        int rest = (position + 1) % 4;
+
+        if(rest == 1){
+            return R.drawable.ic_flowers;
+        }else if(rest == 2){
+            return R.drawable.ic_mini_van;
+        }else if(rest == 3){
+            return R.drawable.ic_hand;
+        }else {
+            return R.drawable.ic_surf_board;
+        }
+    }
 }
