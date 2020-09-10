@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/HorizonDesafio-MundialSurf.iml" filepath="$PROJECT_DIR$/.idea/modules/HorizonDesafio-MundialSurf.iml" group="MundialSurf" />
       <module fileurl="file://$PROJECT_DIR$/MundialSurf.iml" filepath="$PROJECT_DIR$/MundialSurf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MundialSurf-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MundialSurf-app.iml" group="MundialSurf/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
