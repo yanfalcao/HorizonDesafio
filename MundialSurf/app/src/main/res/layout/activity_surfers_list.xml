@@ -45,7 +45,6 @@
                 android:clickable="true"
                 android:onClick="clickOnNewSurfers"
                 app:backgroundTint="@color/floatingButton"
-                app:rippleColor="@android:color/white"
                 app:srcCompat="@drawable/ic_add" />
         </FrameLayout>
     </FrameLayout>
