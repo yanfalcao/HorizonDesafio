@@ -36,9 +36,16 @@ public class SurfersListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Surfers");
+        getSupportActionBar().setTitle("Surfer");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setupRecycler();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private void setupRecycler(){
