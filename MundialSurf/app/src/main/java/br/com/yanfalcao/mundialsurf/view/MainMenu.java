@@ -1,12 +1,10 @@
 package br.com.yanfalcao.mundialsurf.view;
 
 import android.animation.ArgbEvaluator;
-import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Adapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.view.surfersViews.SurfersListActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

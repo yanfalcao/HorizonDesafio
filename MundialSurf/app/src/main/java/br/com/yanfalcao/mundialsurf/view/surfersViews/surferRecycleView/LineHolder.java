@@ -13,7 +13,6 @@ public class LineHolder extends RecyclerView.ViewHolder{
     public TextView name;
     public TextView country;
     public ImageView setting;
-    public ImageView trash;
     public ImageView avatarImage;
 
     public LineHolder(View itemView) {
@@ -21,7 +20,6 @@ public class LineHolder extends RecyclerView.ViewHolder{
         name = itemView.findViewById(R.id.namee);
         country = itemView.findViewById(R.id.countryy);
         setting = itemView.findViewById(R.id.setting);
-        trash = itemView.findViewById(R.id.trash);
         avatarImage = itemView.findViewById(R.id.avatar_image);
     }
 }

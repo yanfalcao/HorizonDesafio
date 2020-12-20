@@ -59,15 +59,6 @@ public class LineAdapterSurfer extends RecyclerView.Adapter<LineHolder> implemen
                     v.getContext().startActivity(intent);
                 }
             });
-            holder.trash.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SurferController.deleteSurfer(new DataBaseHelper(v.getContext()), mUsers.get(i).get("id").toString());
-                    mUsers.remove(i);
-                    notifyItemRemoved(i);
-                    notifyItemChanged(i, mUsers.size());
-                }
-            });
         }
     }
 
