@@ -36,6 +36,10 @@ public class NewSurferActivity extends AppCompatActivity {
             Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
     }
 
+    public void cancelSurfer(View v){
+        finish();
+    }
+
     @Override
     protected void onDestroy(){
         helper.close();

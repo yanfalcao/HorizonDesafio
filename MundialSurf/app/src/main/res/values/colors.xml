@@ -7,8 +7,10 @@
     <color name="colorLightGray">#a4b0be</color>
     <color name="lightGray">#f1f2f6</color>
     <color name="darkGray">#ced6e0</color>
+    <color name="textGray">#A0A6AD</color>
     <color name="colorLightGreen">#7bed9f</color>
     <color name="colorDarkGreen">#2ed573</color>
+    <color name="colorDarkBlueGreen">#48ABA9</color>
     <color name="colorLightBlue">#70a1ff</color>
     <color name="superLightBlue">#C2D7FF</color>
     <color name="superLightYellow">#FFF5A8</color>
