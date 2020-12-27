@@ -1,108 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.surfersViews.NewSurferActivity">
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_height="wrap_content"
-        android:stretchColumns="0,1,2">
+        android:layout_width="match_parent"/>
 
-        <ImageView
-            android:layout_height="150dp"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/ic_surfer_male"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <TableLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:stretchColumns="0,1,2">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_height="150dp"
+                android:layout_marginTop="100dp"
+                android:src="@drawable/ic_surfer_male"/>
+
+            <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Create a New Surfer"
-                android:textAllCaps="true"
-                android:textSize="20sp"
-                android:textColor="@color/colorLightGreen"
-                android:textStyle="bold"/>
-        </LinearLayout>
+                android:layout_marginTop="70dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Create a New Surfer"
+                    android:textAllCaps="true"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorLightGreen"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/name"
-                android:layout_height="50dp"
-                android:layout_width="350dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:hint="Name"
-                android:inputType="text"
-                android:background="@drawable/db_gradient_edit"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/country"
-                android:layout_height="50dp"
-                android:layout_width="350dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:hint="Country"
-                android:inputType="text"
-                android:background="@drawable/db_gradient_edit"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <Button
-                android:onClick="saveSurfer"
-                android:background="@drawable/db_gradient_button"
+            <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_width="250dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:text="SAVE"
-                android:textColor="@color/white"
-                android:textAlignment="center"/>
-        </LinearLayout>
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:orientation="vertical">
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_height="50dp"
+                    android:layout_width="350dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:hint="Name"
+                    android:inputType="text"
+                    android:background="@drawable/db_gradient_edit"/>
+            </LinearLayout>
 
-            <Button
-                android:onClick="cancelSurfer"
-                android:background="@drawable/db_button_cancel"
+            <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_width="250dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:text="CANCEL"
-                android:textColor="@color/white"
-                android:textAlignment="center"/>
-        </LinearLayout>
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-    </TableLayout>
+                <EditText
+                    android:id="@+id/country"
+                    android:layout_height="50dp"
+                    android:layout_width="350dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:hint="Country"
+                    android:inputType="text"
+                    android:background="@drawable/db_gradient_edit"/>
+            </LinearLayout>
 
-</ScrollView>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:onClick="saveSurfer"
+                    android:background="@drawable/db_gradient_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="250dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="SAVE"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:onClick="cancelSurfer"
+                    android:background="@drawable/db_button_cancel"
+                    android:layout_height="wrap_content"
+                    android:layout_width="250dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="CANCEL"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+        </TableLayout>
+
+    </ScrollView>
+</LinearLayout>

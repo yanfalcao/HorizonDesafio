@@ -2,14 +2,19 @@ package br.com.yanfalcao.mundialsurf.view.surfersViews;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.SurferController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class EditSurferActivity extends AppCompatActivity {
+
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     EditText name, country;
     String idSurfer, nameSurfer, countrySurfer;
@@ -19,6 +24,11 @@ public class EditSurferActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_surfer);
+        ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         helper = new DataBaseHelper(this);
 
@@ -31,6 +41,12 @@ public class EditSurferActivity extends AppCompatActivity {
 
         name.setText(nameSurfer);
         country.setText(countrySurfer);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     public void editSurfer(View v){
