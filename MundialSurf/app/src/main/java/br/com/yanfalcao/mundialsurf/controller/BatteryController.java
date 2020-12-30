@@ -75,7 +75,7 @@ public class BatteryController {
         if(! cursor.moveToNext()){
             Map<String, Object> item = new HashMap<String, Object>();
 
-            item.put(id, "Empty");
+            item.put(id, "1");
             item.put(surferOne, "Empty");
             item.put(surferTwo, "Empty");
 
