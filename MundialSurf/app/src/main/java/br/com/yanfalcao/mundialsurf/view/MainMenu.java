@@ -77,11 +77,6 @@ public class MainMenu extends AppCompatActivity {
         models.add(item);
 
         item = new HashMap<>();
-        item.put("IMAGE", R.drawable.wave);
-        item.put("TITLE", "Wave Register");
-        models.add(item);
-
-        item = new HashMap<>();
         item.put("IMAGE", R.drawable.win);
         item.put("TITLE", "Winner");
         models.add(item);
@@ -91,7 +86,6 @@ public class MainMenu extends AppCompatActivity {
         Integer[] colors_helper = {
                 getResources().getColor(R.color.surfer),
                 getResources().getColor(R.color.battery),
-                getResources().getColor(R.color.wave),
                 getResources().getColor(R.color.win)
         };
 

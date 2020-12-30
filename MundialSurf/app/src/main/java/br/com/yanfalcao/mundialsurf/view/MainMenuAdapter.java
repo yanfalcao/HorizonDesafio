@@ -61,14 +61,10 @@ public class MainMenuAdapter extends PagerAdapter {
                         break;
 
                     case 1:
-                        context.startActivity(new Intent(context, NewBatteryActivity.class));
-                        break;
-
-                    case 2:
                         context.startActivity(new Intent(context, NewWaveActivity.class));
                         break;
 
-                    case 3:
+                    case 2:
                         context.startActivity(new Intent(context, BatteryListActivity.class));
                         break;
                 }
