@@ -2,8 +2,8 @@ package br.com.yanfalcao.mundialsurf.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.view.batteriesViews.NewBatteryActivity;
 import br.com.yanfalcao.mundialsurf.view.batteriesViews.winnerViews.BatteryListActivity;
 import br.com.yanfalcao.mundialsurf.view.surfersViews.SurfersListActivity;
 import br.com.yanfalcao.mundialsurf.view.wavesViews.NewWaveActivity;

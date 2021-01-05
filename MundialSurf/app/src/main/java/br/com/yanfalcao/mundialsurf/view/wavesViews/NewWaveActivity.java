@@ -1,34 +1,30 @@
 package br.com.yanfalcao.mundialsurf.view.wavesViews;
 
-import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+import java.util.Map;
+
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.BatteryController;
-import br.com.yanfalcao.mundialsurf.controller.SurferController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
 import br.com.yanfalcao.mundialsurf.view.batteriesViews.NewBatteryActivity;
-import br.com.yanfalcao.mundialsurf.view.surfersViews.surferRecycleView.LineAdapterSurfer;
 import br.com.yanfalcao.mundialsurf.view.wavesViews.wavesRecycleView.LineAdapterWave;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import java.util.List;
-import java.util.Map;
 
 public class NewWaveActivity extends AppCompatActivity {
 
@@ -72,7 +68,7 @@ public class NewWaveActivity extends AppCompatActivity {
         inflater.inflate(R.menu.surfer_menu, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
@@ -94,7 +90,7 @@ public class NewWaveActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart(){
-        mAdapter = new LineAdapterWave(getListBatteries());
+        mAdapter = new LineAdapterWave(getSupportFragmentManager(), getListBatteries());
         mRecyclerView.invalidate();
         mRecyclerView.setAdapter(null);
         mRecyclerView.setAdapter(mAdapter);
@@ -109,7 +105,7 @@ public class NewWaveActivity extends AppCompatActivity {
 
     private void setupRecycler(){
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new LineAdapterWave(getListBatteries());
+        mAdapter = new LineAdapterWave(getSupportFragmentManager(), getListBatteries());
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);

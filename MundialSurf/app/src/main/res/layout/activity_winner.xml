@@ -60,7 +60,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/trophy_icon"
+        app:srcCompat="@drawable/trophy_icon"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"/>
 

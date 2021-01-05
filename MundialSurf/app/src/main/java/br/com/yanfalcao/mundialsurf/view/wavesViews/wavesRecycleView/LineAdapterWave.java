@@ -1,9 +1,9 @@
 package br.com.yanfalcao.mundialsurf.view.wavesViews.wavesRecycleView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +15,15 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.view.wavesViews.RegisterWaveActivity;
+import br.com.yanfalcao.mundialsurf.view.wavesViews.fragment.ScoreBottomSheetDialog;
 
 public class LineAdapterWave extends RecyclerView.Adapter<LineHolderWave> implements Filterable {
     private List<Map<String, Object>> mBatteries;
     private List<Map<String, Object>> fullBatteries;
+    private FragmentManager fragmentManager;
 
-    public LineAdapterWave(List<Map<String, Object>> batteries){
+    public LineAdapterWave(FragmentManager fragmentManager, List<Map<String, Object>> batteries){
+        this.fragmentManager = fragmentManager;
         mBatteries = batteries;
         fullBatteries = new ArrayList<>(batteries);
     }
@@ -46,17 +48,8 @@ public class LineAdapterWave extends RecyclerView.Adapter<LineHolderWave> implem
             holder.infoImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(new Intent(v.getContext(), RegisterWaveActivity.class));
-                    Bundle extras = new Bundle();
-
-                    extras.putString("idSurferOne", map.get("idSurferOne").toString());
-                    extras.putString("idSurferTwo", map.get("idSurferTwo").toString());
-                    extras.putString("nameSurferOne", map.get("surfer1").toString());
-                    extras.putString("nameSurferTwo", map.get("surfer2").toString());
-                    extras.putString("idBattery", map.get("idBattery").toString());
-
-                    intent.putExtras(extras);
-                    v.getContext().startActivity(intent);
+                    ScoreBottomSheetDialog bottomSheet = new ScoreBottomSheetDialog(map);
+                    bottomSheet.show(fragmentManager, "scoreBottomSheet");
                 }
             });
         }

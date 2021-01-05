@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context=".view.surfersViews.SurfersListActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -20,12 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/surfers_line_view">
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:layout_gravity="bottom"
             android:background="@color/backgoundScreen">
 
-            <android.support.design.widget.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
