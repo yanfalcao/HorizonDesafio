@@ -1,81 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_height="wrap_content"
-        android:stretchColumns="0,1">
+        android:layout_width="match_parent"/>
 
-        <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorDarkGreen"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:stretchColumns="0,1,2">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_height="150dp"
+                android:layout_marginTop="100dp"
+                android:src="@drawable/ic_surfer_woman"/>
+
+            <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="New Battery"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="30sp"
-                android:textColor="@color/white"
-                android:typeface="monospace"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:layout_marginTop="70dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <TextView
-            style="@style/TextView"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="5dp"
-            android:text="Surfer One"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Create a New Hit"
+                    android:textAllCaps="true"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorLightGreen"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
-        <Spinner
-            android:id="@+id/surferOne"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/rount_select"
-            android:prompt="@id/surferOne">
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        </Spinner>
+                <Spinner
+                    android:id="@+id/surferOne"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:background="@drawable/db_gradient_edit" />
+            </LinearLayout>
 
-        <TextView
-            style="@style/TextView"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="5dp"
-            android:text="Surfer Two"/>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/surferTwo"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/rount_select"
-            android:prompt="@id/surferTwo">
+                <Spinner
+                    android:id="@+id/surferTwo"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:background="@drawable/db_gradient_edit" />
 
-        </Spinner>
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/save"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:onClick="saveBattery"
-            android:background="@drawable/rount_button"
-            android:text="Save"
-            android:textColor="@color/white"/>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-    </TableLayout>
+                <Button
+                    android:id="@+id/save_hit"
+                    android:background="@drawable/db_gradient_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="250dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="SAVE"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"/>
+            </LinearLayout>
 
-</ScrollView>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/cancel"
+                    android:background="@drawable/db_button_cancel"
+                    android:layout_height="wrap_content"
+                    android:layout_width="250dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="CANCEL"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+        </TableLayout>
+    </ScrollView>
+</LinearLayout>

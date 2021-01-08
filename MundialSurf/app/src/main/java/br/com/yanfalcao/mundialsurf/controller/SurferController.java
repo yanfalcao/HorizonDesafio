@@ -111,6 +111,8 @@ public class SurferController {
     public static ArrayList<String> getSurfersName(ArrayList<Map<String, Object>> surfers) {
         ArrayList<String> surfersName = new ArrayList<String>();
 
+        surfersName.add("Select a new surfer...");
+
         Iterator i = surfers.iterator();
         while(i.hasNext()){
             HashMap<String, Object> surfer = (HashMap) i.next();
