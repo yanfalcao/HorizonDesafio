@@ -75,18 +75,12 @@ public class MainMenu extends AppCompatActivity {
         item.put("IMAGE", R.drawable.batterie);
         item.put("TITLE", "Battery Register");
         models.add(item);
-
-        item = new HashMap<>();
-        item.put("IMAGE", R.drawable.win);
-        item.put("TITLE", "Winner");
-        models.add(item);
     }
 
     private void colorsInicialize(){
         Integer[] colors_helper = {
                 getResources().getColor(R.color.surfer),
-                getResources().getColor(R.color.battery),
-                getResources().getColor(R.color.win)
+                getResources().getColor(R.color.battery)
         };
 
         colors = colors_helper;
