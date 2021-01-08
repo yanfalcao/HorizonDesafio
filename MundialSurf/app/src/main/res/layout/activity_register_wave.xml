@@ -1,105 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_height="wrap_content"
-        android:stretchColumns="0,1">
+        android:layout_width="match_parent"/>
 
-        <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorDarkGreen"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:stretchColumns="0,1,2">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_height="150dp"
+                android:layout_marginTop="60dp"
+                android:src="@drawable/ic_surfer_woman"/>
+
+            <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="New Wave"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="30sp"
-                android:textColor="@color/white"
-                android:typeface="monospace"
-                android:textStyle="bold" />
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Create a New Score"
+                    android:textAllCaps="true"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorLightGreen"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
-        <TextView
-            style="@style/TextView"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="5dp"
-            android:text="Choose Surfer"/>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/chooseSurfer"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/rount_select"
-            android:prompt="@id/chooseSurfer">
+                <Spinner
+                    android:id="@+id/chooseSurfer"
+                    android:layout_width="350dp"
+                    android:layout_height="50dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:background="@drawable/db_gradient_edit" />
+            </LinearLayout>
 
-        </Spinner>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <TextView
-            style="@style/TextView"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="5dp"
-            android:text="Punctuation One"/>
+                <EditText
+                    android:id="@+id/noteOneEditText"
+                    android:layout_height="50dp"
+                    android:layout_width="350dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:hint="Partial Score 1"
+                    android:inputType="text"
+                    android:background="@drawable/db_gradient_edit"/>
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/noteOneEditText"
-            style="@style/TextView"
-            android:inputType="numberDecimal"
-            android:height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"/>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <TextView
-            style="@style/TextView"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="5dp"
-            android:text="Punctuation Two"/>
+                <EditText
+                    android:id="@+id/noteTwoEditText"
+                    android:layout_height="50dp"
+                    android:layout_width="350dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:hint="Partial Score 2"
+                    android:inputType="text"
+                    android:background="@drawable/db_gradient_edit"/>
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/noteTwoEditText"
-            style="@style/TextView"
-            android:inputType="numberDecimal"
-            android:height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"/>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <TextView
-            style="@style/TextView"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="5dp"
-            android:text="Punctuation Three"/>
+                <EditText
+                    android:id="@+id/noteThreeEditText"
+                    android:layout_height="50dp"
+                    android:layout_width="350dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:hint="Partial Score 3"
+                    android:inputType="text"
+                    android:background="@drawable/db_gradient_edit"/>
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/noteThreeEditText"
-            style="@style/TextView"
-            android:inputType="numberDecimal"
-            android:height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"/>
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/save"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:onClick="saveWave"
-            android:background="@drawable/rount_button"
-            android:text="Save"
-            android:textColor="@color/white"/>
-
-    </TableLayout>
-
-</ScrollView>
+                <Button
+                    android:id="@+id/save"
+                    android:background="@drawable/db_gradient_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="250dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="SAVE"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+        </TableLayout>
+    </ScrollView>
+</LinearLayout>
