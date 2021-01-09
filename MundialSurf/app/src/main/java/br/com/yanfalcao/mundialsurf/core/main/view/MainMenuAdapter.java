@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view;
+package br.com.yanfalcao.mundialsurf.core.main.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.view.surfersViews.SurfersListActivity;
-import br.com.yanfalcao.mundialsurf.view.wavesViews.NewWaveActivity;
+import br.com.yanfalcao.mundialsurf.core.surfer.view.SurfersListActivity;
+import br.com.yanfalcao.mundialsurf.core.hit.view.HitActivity;
 
 public class MainMenuAdapter extends PagerAdapter {
 
@@ -59,7 +59,7 @@ public class MainMenuAdapter extends PagerAdapter {
                         break;
 
                     case 1:
-                        context.startActivity(new Intent(context, NewWaveActivity.class));
+                        context.startActivity(new Intent(context, HitActivity.class));
                         break;
                 }
             }

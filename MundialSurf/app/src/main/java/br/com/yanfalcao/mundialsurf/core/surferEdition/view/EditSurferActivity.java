@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view.surfersViews;
+package br.com.yanfalcao.mundialsurf.core.surferEdition.view;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.controller.SurferController;
-import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
+import br.com.yanfalcao.mundialsurf.model.RoomData;
+import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -18,7 +18,7 @@ public class EditSurferActivity extends AppCompatActivity {
 
     EditText name, country;
     String idSurfer, nameSurfer, countrySurfer;
-    DataBaseHelper helper;
+    RoomData database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class EditSurferActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        helper = new DataBaseHelper(this);
+        database = RoomData.getInstance(this);
 
         idSurfer = getIntent().getStringExtra("id");
         countrySurfer = getIntent().getStringExtra("country");
@@ -50,26 +50,22 @@ public class EditSurferActivity extends AppCompatActivity {
     }
 
     public void editSurfer(View v){
-        nameSurfer = name.getText().toString();
-        countrySurfer = country.getText().toString();
+        Surfer surfer = new Surfer();
 
-        if(SurferController.editSurfer(helper, idSurfer, nameSurfer, countrySurfer))
+        surfer.setName(name.getText().toString());
+        surfer.setCountry(country.getText().toString());
+
+        if(database.getSurferDao().update(surfer) <= 0)
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
     }
 
     public void deleteSurfer(View view) {
-        if(! SurferController.deleteSurfer(helper, idSurfer))
+        if(database.getSurferDao().delete(Integer.parseInt(idSurfer)) <= 0)
             Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
         finish();
-    }
-
-    @Override
-    protected void onDestroy(){
-        helper.close();
-        super.onDestroy();
     }
 }

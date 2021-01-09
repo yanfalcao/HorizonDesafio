@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view.wavesViews;
+package br.com.yanfalcao.mundialsurf.core.scoreCreation.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

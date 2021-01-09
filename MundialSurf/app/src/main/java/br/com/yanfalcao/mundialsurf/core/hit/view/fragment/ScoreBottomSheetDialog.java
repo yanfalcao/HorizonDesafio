@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view.wavesViews.fragment;
+package br.com.yanfalcao.mundialsurf.core.hit.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ import java.util.Map;
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.BatteryController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
-import br.com.yanfalcao.mundialsurf.view.wavesViews.RegisterWaveActivity;
+import br.com.yanfalcao.mundialsurf.core.scoreCreation.view.RegisterWaveActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

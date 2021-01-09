@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view.wavesViews.wavesRecycleView;
+package br.com.yanfalcao.mundialsurf.core.hit.view.hitRecycleView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,14 +8,14 @@ import android.widget.TextView;
 
 import br.com.yanfalcao.mundialsurf.R;
 
-public class LineHolderWave extends RecyclerView.ViewHolder{
+public class LineHolderHit extends RecyclerView.ViewHolder{
 
     public TextView idBattery;
     public TextView surferOne;
     public TextView surferTwo;
     public ImageView infoImage;
 
-    public LineHolderWave(@NonNull View itemView) {
+    public LineHolderHit(@NonNull View itemView) {
         super(itemView);
         idBattery = itemView.findViewById(R.id.idBattery);
         surferOne = itemView.findViewById(R.id.surferOne);

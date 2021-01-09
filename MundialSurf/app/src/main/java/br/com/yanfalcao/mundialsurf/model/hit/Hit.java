@@ -10,7 +10,7 @@ import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 @Entity(tableName = "bateria")
 public class Hit {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
     private int id;
 

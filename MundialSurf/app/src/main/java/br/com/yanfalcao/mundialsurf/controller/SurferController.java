@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
+import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 
 public class SurferController {
 
@@ -56,67 +57,23 @@ public class SurferController {
         return surfers;
     }
 
-    public static boolean editSurfer(DataBaseHelper helper, String id, String name, String country){
-        SQLiteDatabase db = helper.getWritableDatabase();
+    public static String getIdSurferByName(String name, List<Surfer> surfers){
 
-        ContentValues values = new ContentValues();
-        values.put("nome", name);
-        values.put("pais", country);
-
-        int result= db.update("surfista", values, "_id = ?",new String[]{ id });
-
-        db.close();
-
-        return result > 0;
-    }
-
-    public static long insertSurfer(DataBaseHelper helper, String name, String country){
-        SQLiteDatabase db = helper.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put("nome", name);
-        values.put("pais", country);
-
-        long result = db.insert("surfista", null, values);
-
-        db.close();
-
-        return result;
-    }
-
-    public static boolean deleteSurfer(DataBaseHelper helper, String id){
-        SQLiteDatabase db = helper.getWritableDatabase();
-        String where [] = new String[]{ id };
-
-        BatteryController.deleteBatteeriesBySurfer(helper, id);
-
-        int result = db.delete("surfista", "_id = ?", where);
-
-        db.close();
-
-        return 0 < result;
-    }
-
-    public static String getIdSurferByName(String name, ArrayList<Map<String, Object>> surfers){
-        Iterator i = surfers.iterator();
-        while(i.hasNext()){
-            HashMap<String, Object> surfer = (HashMap) i.next();
-            if(surfer.get("name").equals(name))
-                return surfer.get("id").toString();
+        for (Surfer s : surfers){
+            if(s.getName().equals(name))
+                return String.valueOf(s.getId());
         }
 
         return null;
     }
 
-    public static ArrayList<String> getSurfersName(ArrayList<Map<String, Object>> surfers) {
+    public static ArrayList<String> getSurfersName(List<Surfer> surfers) {
         ArrayList<String> surfersName = new ArrayList<String>();
 
         surfersName.add("Select a new surfer...");
 
-        Iterator i = surfers.iterator();
-        while(i.hasNext()){
-            HashMap<String, Object> surfer = (HashMap) i.next();
-            surfersName.add((String)surfer.get("name"));
+        for(Surfer s : surfers){
+            surfersName.add(s.getName());
         }
 
         return surfersName;

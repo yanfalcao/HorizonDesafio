@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view.batteriesViews;
+package br.com.yanfalcao.mundialsurf.core.hitCreation.view;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,24 +11,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.controller.BatteryController;
 import br.com.yanfalcao.mundialsurf.controller.SurferController;
-import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
+import br.com.yanfalcao.mundialsurf.model.RoomData;
+import br.com.yanfalcao.mundialsurf.model.hit.Hit;
+import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.List;
 
-public class NewBatteryActivity extends AppCompatActivity {
+public class hitCreationActivity extends AppCompatActivity {
 
     @BindView(R.id.surferOne) Spinner surferOne;
     @BindView(R.id.surferTwo) Spinner surferTwo;
     @BindView(R.id.toolbar) Toolbar toolbar;
 
-    private ArrayList<Map<String, Object>> surfers;
-    private DataBaseHelper helper;
+    private List<Surfer> surfers;
+    private RoomData database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,8 @@ public class NewBatteryActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        helper = new DataBaseHelper(this);
-        surfers = (ArrayList) SurferController.selectSurfers(helper,"id", "name", "country");
+        database = RoomData.getInstance(this);
+        surfers = database.getSurferDao().getAll();
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
@@ -84,6 +84,8 @@ public class NewBatteryActivity extends AppCompatActivity {
 
     @OnClick(R.id.save_hit)
     public void saveBattery(View v){
+        Hit hit = new Hit();
+
         String s1 = SurferController.getIdSurferByName(surferOne.getSelectedItem().toString(), surfers);
         String s2 = SurferController.getIdSurferByName(surferTwo.getSelectedItem().toString(), surfers);
 
@@ -92,7 +94,10 @@ public class NewBatteryActivity extends AppCompatActivity {
         else if(s1.equals(s2))
             Toast.makeText(this, "ERROR: THE SURFERS ARE SAME", Toast.LENGTH_SHORT).show();
         else{
-            if(BatteryController.insertBattery(helper,s1, s2) != -1)
+            hit.setIdSurferOne(Integer.parseInt(s1));
+            hit.setIdSurferTwo(Integer.parseInt(s2));
+
+            if(database.getHitDao().insert(hit) != -1)
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
             else
                 Toast.makeText(this, "DATABASE ERROR", Toast.LENGTH_SHORT).show();
@@ -102,11 +107,5 @@ public class NewBatteryActivity extends AppCompatActivity {
     @OnClick(R.id.cancel)
     public void cancelSurfer(View v){
         finish();
-    }
-
-    @Override
-    protected void onDestroy(){
-        helper.close();
-        super.onDestroy();
     }
 }

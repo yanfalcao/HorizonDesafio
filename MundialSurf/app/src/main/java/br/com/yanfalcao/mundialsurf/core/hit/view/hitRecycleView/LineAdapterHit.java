@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view.wavesViews.wavesRecycleView;
+package br.com.yanfalcao.mundialsurf.core.hit.view.hitRecycleView;
 
 import androidx.annotation.NonNull;
 
@@ -15,14 +15,14 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.view.wavesViews.fragment.ScoreBottomSheetDialog;
+import br.com.yanfalcao.mundialsurf.core.hit.view.fragment.ScoreBottomSheetDialog;
 
-public class LineAdapterWave extends RecyclerView.Adapter<LineHolderWave> implements Filterable {
+public class LineAdapterHit extends RecyclerView.Adapter<LineHolderHit> implements Filterable {
     private List<Map<String, Object>> mBatteries;
     private List<Map<String, Object>> fullBatteries;
     private FragmentManager fragmentManager;
 
-    public LineAdapterWave(FragmentManager fragmentManager, List<Map<String, Object>> batteries){
+    public LineAdapterHit(FragmentManager fragmentManager, List<Map<String, Object>> batteries){
         this.fragmentManager = fragmentManager;
         mBatteries = batteries;
         fullBatteries = new ArrayList<>(batteries);
@@ -30,13 +30,13 @@ public class LineAdapterWave extends RecyclerView.Adapter<LineHolderWave> implem
 
     @NonNull
     @Override
-    public LineHolderWave onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return new LineHolderWave(LayoutInflater.from(viewGroup.getContext())
+    public LineHolderHit onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        return new LineHolderHit(LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.hit_line_view, viewGroup, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LineHolderWave holder, int i) {
+    public void onBindViewHolder(@NonNull LineHolderHit holder, int i) {
         int count = i + 1;
         final Map<String, Object> map = mBatteries.get(i);
 

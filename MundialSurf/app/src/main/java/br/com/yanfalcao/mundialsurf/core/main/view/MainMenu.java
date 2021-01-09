@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view;
+package br.com.yanfalcao.mundialsurf.core.main.view;
 
 import android.animation.ArgbEvaluator;
 import androidx.viewpager.widget.PagerAdapter;
@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.model.RoomData;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

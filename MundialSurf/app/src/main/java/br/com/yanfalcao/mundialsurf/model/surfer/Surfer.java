@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "surfista")
 public class Surfer {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
     private int id;
 

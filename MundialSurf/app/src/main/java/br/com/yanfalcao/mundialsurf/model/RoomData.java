@@ -10,17 +10,23 @@ import br.com.yanfalcao.mundialsurf.model.hit.Hit;
 import br.com.yanfalcao.mundialsurf.model.hit.HitDao;
 import br.com.yanfalcao.mundialsurf.model.score.Score;
 import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
+import br.com.yanfalcao.mundialsurf.model.surfer.SurferDao;
 import br.com.yanfalcao.mundialsurf.model.wave.Wave;
 
-@Database(version = 2, entities = {Hit.class, Score.class, Surfer.class, Wave.class})
+@Database(version = 1, entities = {Hit.class, Score.class, Surfer.class, Wave.class})
 public abstract class RoomData extends RoomDatabase {
-    private static final String DATA_BASE = "MundialSurf";
+    private static final String DATA_BASE = "MundialSurfDataBase";
+    private static RoomData database;
 
     public static RoomData getInstance(Activity activity){
-        return Room.databaseBuilder(activity, RoomData.class, DATA_BASE)
-                .allowMainThreadQueries()
-                .build();
+        if(database == null) {
+            database = Room.databaseBuilder(activity, RoomData.class, DATA_BASE)
+                    .allowMainThreadQueries()
+                    .build();
+        }
+        return database;
     }
 
     public abstract HitDao getHitDao();
+    public abstract SurferDao getSurferDao();
 }

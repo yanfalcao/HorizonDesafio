@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view.surfersViews.surferRecycleView;
+package br.com.yanfalcao.mundialsurf.core.surfer.view.surferRecycleView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,17 +11,17 @@ import android.widget.Filterable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.view.surfersViews.EditSurferActivity;
+import br.com.yanfalcao.mundialsurf.core.surferEdition.view.EditSurferActivity;
+import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 
 public class LineAdapterSurfer extends RecyclerView.Adapter<LineHolder> implements Filterable {
 
-    private final List<Map<String, Object>> mUsers;
-    private  final List<Map<String, Object>> fullUsers;
+    private final List<Surfer> mUsers;
+    private  final List<Surfer> fullUsers;
 
-    public LineAdapterSurfer(List<Map<String, Object>> users){
+    public LineAdapterSurfer(List<Surfer> users){
         mUsers = users;
         fullUsers = new ArrayList<>(users);
     }
@@ -39,19 +39,19 @@ public class LineAdapterSurfer extends RecyclerView.Adapter<LineHolder> implemen
 
     @Override
     public void onBindViewHolder(LineHolder holder, final int i) {
-        holder.name.setText(mUsers.get(i).get("name").toString());
-        holder.country.setText(mUsers.get(i).get("country").toString());
+        holder.name.setText(mUsers.get(i).getName());
+        holder.country.setText(mUsers.get(i).getCountry());
         holder.avatarImage.setImageResource(getAvatarImage(i));
 
-        if(mUsers.get(i).get("name").toString() != "Empty"){
+        if(mUsers.get(i).getName() != "Empty"){
             holder.setting.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), EditSurferActivity.class);
                     Bundle extras = new Bundle();
-                    extras.putString("id", mUsers.get(i).get("id").toString());
-                    extras.putString("name", mUsers.get(i).get("name").toString());
-                    extras.putString("country", mUsers.get(i).get("country").toString());
+                    extras.putString("id", String.valueOf(mUsers.get(i).getId()));
+                    extras.putString("name", mUsers.get(i).getName());
+                    extras.putString("country", mUsers.get(i).getCountry());
 
                     intent.putExtras(extras);
                     v.getContext().startActivity(intent);
@@ -68,16 +68,16 @@ public class LineAdapterSurfer extends RecyclerView.Adapter<LineHolder> implemen
     private Filter itemFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<Map<String, Object>> filteredList = new ArrayList<>();
+            List<Surfer> filteredList = new ArrayList<>();
 
             if(constraint == null || constraint.length() == 0)
                 filteredList.addAll(fullUsers);
             else{
                 String filter = constraint.toString().toLowerCase().trim();
 
-                for(Map<String, Object> item : fullUsers) {
-                    if(item.get("country").toString().toLowerCase().contains(filter)) {
-                        filteredList.add(item);
+                for(Surfer surfer : fullUsers) {
+                    if(surfer.getCountry().toLowerCase().contains(filter) || surfer.getName().toLowerCase().contains(filter)) {
+                        filteredList.add(surfer);
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view.surfersViews.surferRecycleView;
+package br.com.yanfalcao.mundialsurf.core.surfer.view.surferRecycleView;
 
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;

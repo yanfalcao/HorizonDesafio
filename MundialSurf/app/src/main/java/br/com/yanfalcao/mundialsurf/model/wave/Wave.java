@@ -11,7 +11,7 @@ import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 @Entity(tableName = "onda")
 public class Wave {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
     private int id;
 

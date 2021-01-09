@@ -1,4 +1,4 @@
-package br.com.yanfalcao.mundialsurf.view.wavesViews;
+package br.com.yanfalcao.mundialsurf.core.hit.view;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -20,20 +20,20 @@ import java.util.Map;
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.BatteryController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
-import br.com.yanfalcao.mundialsurf.view.batteriesViews.NewBatteryActivity;
-import br.com.yanfalcao.mundialsurf.view.wavesViews.wavesRecycleView.LineAdapterWave;
+import br.com.yanfalcao.mundialsurf.core.hitCreation.view.hitCreationActivity;
+import br.com.yanfalcao.mundialsurf.core.hit.view.hitRecycleView.LineAdapterHit;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NewWaveActivity extends AppCompatActivity {
+public class HitActivity extends AppCompatActivity {
 
     @BindView(R.id.recycler_view_layout) RecyclerView mRecyclerView;
     @BindView(R.id.toolbar) Toolbar toolbar;
 
     private DataBaseHelper helper;
 
-    private LineAdapterWave mAdapter;
+    private LineAdapterHit mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
@@ -59,7 +59,7 @@ public class NewWaveActivity extends AppCompatActivity {
 
     @OnClick(R.id.floatingActionButton)
     public void toolbarClick(){
-        startActivity(new Intent(this, NewBatteryActivity.class));
+        startActivity(new Intent(this, hitCreationActivity.class));
     }
 
     @Override
@@ -90,7 +90,7 @@ public class NewWaveActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart(){
-        mAdapter = new LineAdapterWave(getSupportFragmentManager(), getListBatteries());
+        mAdapter = new LineAdapterHit(getSupportFragmentManager(), getListBatteries());
         mRecyclerView.invalidate();
         mRecyclerView.setAdapter(null);
         mRecyclerView.setAdapter(mAdapter);
@@ -105,7 +105,7 @@ public class NewWaveActivity extends AppCompatActivity {
 
     private void setupRecycler(){
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new LineAdapterWave(getSupportFragmentManager(), getListBatteries());
+        mAdapter = new LineAdapterHit(getSupportFragmentManager(), getListBatteries());
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);

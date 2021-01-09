@@ -11,7 +11,7 @@ import br.com.yanfalcao.mundialsurf.model.wave.Wave;
 public class Score {
 
     @ColumnInfo(name = "_id")
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "onda_id")
