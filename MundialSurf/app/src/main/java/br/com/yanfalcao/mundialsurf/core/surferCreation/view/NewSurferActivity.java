@@ -7,18 +7,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
+import br.com.yanfalcao.mundialsurf.core.surferCreation.SurferCreationContract;
+import br.com.yanfalcao.mundialsurf.core.surferCreation.presenter.SurferCreationPresenter;
 import br.com.yanfalcao.mundialsurf.model.RoomData;
 import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewSurferActivity extends AppCompatActivity {
+public class NewSurferActivity extends AppCompatActivity implements SurferCreationContract.View {
 
-    @BindView(R.id.name) EditText name;
-    @BindView(R.id.country) EditText country;
+    @BindView(R.id.name) EditText nameEdit;
+    @BindView(R.id.country) EditText countryEdit;
     @BindView(R.id.toolbar) Toolbar toolbar;
 
-    private RoomData database;
+    private SurferCreationContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class NewSurferActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        database = RoomData.getInstance(this);
+        presenter = new SurferCreationPresenter(RoomData.getInstance(this), this);
     }
 
     @Override
@@ -40,22 +42,25 @@ public class NewSurferActivity extends AppCompatActivity {
     }
 
     public void saveSurfer(View v){
-        Surfer surfer = new Surfer();
+        String name = nameEdit.getText().toString();
+        String country = countryEdit.getText().toString();
 
-        surfer.setName(name.getText().toString());
-        surfer.setCountry(country.getText().toString());
-
-        if(database.getSurferDao().insert(surfer) != -1) {
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-            name.setText("");
-            country.setText("");
-        }
-        else {
-            Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
+        if(presenter.validateFields(name, country)){
+            if(presenter.save(name, country)) {
+                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
+            }
+            finish();
         }
     }
 
     public void cancelSurfer(View v){
         finish();
+    }
+
+    @Override
+    public void setErrorEmptyFields() {
+        Toast.makeText(this, "ERROR: Exist empty fields.", Toast.LENGTH_SHORT).show();
     }
 }

@@ -49,9 +49,7 @@ public class LineAdapterSurfer extends RecyclerView.Adapter<LineHolder> implemen
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), EditSurferActivity.class);
                     Bundle extras = new Bundle();
-                    extras.putString("id", String.valueOf(mUsers.get(i).getId()));
-                    extras.putString("name", mUsers.get(i).getName());
-                    extras.putString("country", mUsers.get(i).getCountry());
+                    extras.putInt("id", mUsers.get(i).getId());
 
                     intent.putExtras(extras);
                     v.getContext().startActivity(intent);

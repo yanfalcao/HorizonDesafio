@@ -7,17 +7,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
+import br.com.yanfalcao.mundialsurf.core.surferEdition.SurferEditionContract;
+import br.com.yanfalcao.mundialsurf.core.surferEdition.presenter.SurferEditionPresenter;
 import br.com.yanfalcao.mundialsurf.model.RoomData;
 import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class EditSurferActivity extends AppCompatActivity {
+public class EditSurferActivity extends AppCompatActivity implements SurferEditionContract.View {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.name) EditText nameEdit;
+    @BindView(R.id.country) EditText countryEdit;
 
-    EditText name, country;
-    String idSurfer, nameSurfer, countrySurfer;
+    private SurferEditionContract.Presenter presenter;
     RoomData database;
 
     @Override
@@ -31,16 +34,12 @@ public class EditSurferActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         database = RoomData.getInstance(this);
+        presenter = new SurferEditionPresenter(
+                RoomData.getInstance(this),
+                this,
+                getIntent().getIntExtra("id", 0));
 
-        idSurfer = getIntent().getStringExtra("id");
-        countrySurfer = getIntent().getStringExtra("country");
-        nameSurfer = getIntent().getStringExtra("name");
-
-        name = findViewById(R.id.name);
-        country = findViewById(R.id.country);
-
-        name.setText(nameSurfer);
-        country.setText(countrySurfer);
+        presenter.fillFields();
     }
 
     @Override
@@ -50,22 +49,40 @@ public class EditSurferActivity extends AppCompatActivity {
     }
 
     public void editSurfer(View v){
-        Surfer surfer = new Surfer();
+        String name = nameEdit.getText().toString();
+        String country = countryEdit.getText().toString();
 
-        surfer.setName(name.getText().toString());
-        surfer.setCountry(country.getText().toString());
-
-        if(database.getSurferDao().update(surfer) <= 0)
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
+        if(presenter.validateFields(name, country)) {
+            if (presenter.update(name, country)) {
+                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
+            }
+            finish();
+        }
     }
 
     public void deleteSurfer(View view) {
-        if(database.getSurferDao().delete(Integer.parseInt(idSurfer)) <= 0)
-            Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
-        else
+        if(presenter.delete()) {
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
+        }
         finish();
+    }
+
+    @Override
+    public void setName(String name) {
+        nameEdit.setText(name);
+    }
+
+    @Override
+    public void setCountry(String country) {
+        countryEdit.setText(country);
+    }
+
+    @Override
+    public void setErrorFillField() {
+        Toast.makeText(this, "ERROR: Exist empty fields.", Toast.LENGTH_SHORT).show();
     }
 }

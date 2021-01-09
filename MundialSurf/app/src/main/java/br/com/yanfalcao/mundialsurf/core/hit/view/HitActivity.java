@@ -19,8 +19,8 @@ import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.BatteryController;
+import br.com.yanfalcao.mundialsurf.core.hitCreation.view.HitCreationActivity;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
-import br.com.yanfalcao.mundialsurf.core.hitCreation.view.hitCreationActivity;
 import br.com.yanfalcao.mundialsurf.core.hit.view.hitRecycleView.LineAdapterHit;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -59,7 +59,7 @@ public class HitActivity extends AppCompatActivity {
 
     @OnClick(R.id.floatingActionButton)
     public void toolbarClick(){
-        startActivity(new Intent(this, hitCreationActivity.class));
+        startActivity(new Intent(this, HitCreationActivity.class));
     }
 
     @Override

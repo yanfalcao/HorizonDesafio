@@ -16,6 +16,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainMenu extends AppCompatActivity {
+    public static String IMAGE = "IMAGE";
+    public static String TITLE = "TITLE";
 
     @BindView(R.id.viewPager) ViewPager viewPager;
     PagerAdapter adapter;
@@ -67,13 +69,13 @@ public class MainMenu extends AppCompatActivity {
         Map<String, Object> item = new HashMap<>();
         models = new ArrayList<>();
 
-        item.put("IMAGE", R.drawable.woman_surfer);
-        item.put("TITLE", "Surfers Register");
+        item.put(IMAGE, R.drawable.woman_surfer);
+        item.put(TITLE, "Surfers Register");
         models.add(item);
 
         item = new HashMap<>();
-        item.put("IMAGE", R.drawable.batterie);
-        item.put("TITLE", "Battery Register");
+        item.put(IMAGE, R.drawable.batterie);
+        item.put(TITLE, "Battery Register");
         models.add(item);
     }
 

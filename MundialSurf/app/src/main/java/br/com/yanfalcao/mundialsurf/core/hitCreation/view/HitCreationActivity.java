@@ -11,24 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.controller.SurferController;
+import br.com.yanfalcao.mundialsurf.core.hitCreation.HitCreationContract;
+import br.com.yanfalcao.mundialsurf.core.hitCreation.presenter.HitCreationPresenter;
 import br.com.yanfalcao.mundialsurf.model.RoomData;
-import br.com.yanfalcao.mundialsurf.model.hit.Hit;
-import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import java.util.List;
-
-public class hitCreationActivity extends AppCompatActivity {
+public class HitCreationActivity extends AppCompatActivity implements HitCreationContract.view {
 
     @BindView(R.id.surferOne) Spinner surferOne;
     @BindView(R.id.surferTwo) Spinner surferTwo;
     @BindView(R.id.toolbar) Toolbar toolbar;
 
-    private List<Surfer> surfers;
-    private RoomData database;
+    private HitCreationContract.presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +36,12 @@ public class hitCreationActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        database = RoomData.getInstance(this);
-        surfers = database.getSurferDao().getAll();
+        presenter = new HitCreationPresenter(this, RoomData.getInstance(this));
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_spinner_dropdown_item,
-                SurferController.getSurfersName(surfers)){
+                presenter.getSurfersName()){
 
             @Override
             public boolean isEnabled(int position) {
@@ -84,28 +79,36 @@ public class hitCreationActivity extends AppCompatActivity {
 
     @OnClick(R.id.save_hit)
     public void saveBattery(View v){
-        Hit hit = new Hit();
+        int positionOne = surferOne.getSelectedItemPosition();
+        int positionTwo = surferTwo.getSelectedItemPosition();
 
-        String s1 = SurferController.getIdSurferByName(surferOne.getSelectedItem().toString(), surfers);
-        String s2 = SurferController.getIdSurferByName(surferTwo.getSelectedItem().toString(), surfers);
-
-        if(s1 == null || s1.equals("Empty") || s2 == null || s2.equals("Empty"))
-            Toast.makeText(this, "ERROR: DO NOT HAVE SURFER(S) ", Toast.LENGTH_SHORT).show();
-        else if(s1.equals(s2))
-            Toast.makeText(this, "ERROR: THE SURFERS ARE SAME", Toast.LENGTH_SHORT).show();
-        else{
-            hit.setIdSurferOne(Integer.parseInt(s1));
-            hit.setIdSurferTwo(Integer.parseInt(s2));
-
-            if(database.getHitDao().insert(hit) != -1)
+        if(presenter.validateFields(positionOne, positionTwo)) {
+            if (presenter.save(positionOne, positionTwo)) {
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-            else
+            } else {
                 Toast.makeText(this, "DATABASE ERROR", Toast.LENGTH_SHORT).show();
+            }
+            finish();
         }
     }
 
     @OnClick(R.id.cancel)
     public void cancelSurfer(View v){
         finish();
+    }
+
+    @Override
+    public void setErrorWithoutSurfer() {
+        Toast.makeText(this, "ERROR: DO NOT HAVE SURFER(S) ", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setErrorSurfersSame() {
+        Toast.makeText(this, "ERROR: THE SURFERS ARE SAME", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setErrorSelectSurfer() {
+        Toast.makeText(this, "ERROR: SELECT A SURFER", Toast.LENGTH_SHORT).show();
     }
 }

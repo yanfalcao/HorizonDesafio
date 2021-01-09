@@ -13,6 +13,9 @@ public interface SurferDao {
     @Query("Select * From surfista;")
     public List<Surfer> getAll();
 
+    @Query("Select * From surfista Where _id = :id;")
+    public Surfer getById(int id);
+
     @Insert
     public int insert(Surfer surfer);
 

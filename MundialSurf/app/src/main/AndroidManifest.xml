@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".core.hitCreation.view.hitCreationActivity" />
+        <activity android:name=".core.hitCreation.view.HitCreationActivity" />
         <activity android:name=".core.surferEdition.view.EditSurferActivity" />
         <activity android:name=".core.surferCreation.view.NewSurferActivity" />
         <activity android:name=".core.hit.view.HitActivity" />
