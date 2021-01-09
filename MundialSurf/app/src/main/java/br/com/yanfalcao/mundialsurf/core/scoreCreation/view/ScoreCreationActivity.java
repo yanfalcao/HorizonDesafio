@@ -10,16 +10,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.controller.NoteController;
-import br.com.yanfalcao.mundialsurf.controller.WaveController;
-import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
+import br.com.yanfalcao.mundialsurf.model.RoomData;
+import br.com.yanfalcao.mundialsurf.model.score.Score;
+import br.com.yanfalcao.mundialsurf.model.wave.Wave;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import java.util.ArrayList;
 
-public class RegisterWaveActivity extends AppCompatActivity {
+public class ScoreCreationActivity extends AppCompatActivity {
 
     @BindView(R.id.chooseSurfer) Spinner chooseSurfer;
     @BindView(R.id.noteOneEditText) EditText noteOne;
@@ -27,7 +27,7 @@ public class RegisterWaveActivity extends AppCompatActivity {
     @BindView(R.id.noteThreeEditText) EditText noteThree;
     @BindView(R.id.toolbar) Toolbar toolbar;
     private ArrayList<String> surfers;
-    private DataBaseHelper helper;
+    private RoomData database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class RegisterWaveActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        helper = new DataBaseHelper(this);
+        database = RoomData.getInstance(this);
         surfers = getSurfers();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -57,17 +57,25 @@ public class RegisterWaveActivity extends AppCompatActivity {
     @OnClick(R.id.save)
     public void save(View view) {
         long result, resultNote;
+        Wave wave = new Wave();
+        Score score = new Score();
 
-        if(getIntent().getStringExtra("nameSurferOne").equals(chooseSurfer.getSelectedItem().toString()))
-            result = WaveController.insertWave(helper, getIntent().getStringExtra("idBattery"), getIntent().getStringExtra("idSurferOne"));
-        else
-            result = WaveController.insertWave(helper, getIntent().getStringExtra("idBattery"), getIntent().getStringExtra("idSurferTwo"));
+        wave.setIdHit(Integer.parseInt(getIntent().getStringExtra("idBattery")));
 
-        resultNote = NoteController.insertNote(helper,
-                Integer.toString(WaveController.selectLastWaveId(helper)),
-                noteOne.getText().toString(),
-                noteTwo.getText().toString(),
-                noteThree.getText().toString());
+        if(getIntent().getStringExtra("nameSurferOne").equals(chooseSurfer.getSelectedItem().toString())) {
+            wave.setIdSurfer(Integer.parseInt(getIntent().getStringExtra("idSurferOne")));
+            result = database.getWaveDao().insert(wave);
+        }else {
+            wave.setIdSurfer(Integer.parseInt(getIntent().getStringExtra("idSurferTwo")));
+            result = database.getWaveDao().insert(wave);
+        }
+
+        score.setIdWave(database.getWaveDao().getLastWaveId());
+        score.setPartialScoreOne(Double.parseDouble(noteOne.getText().toString()));
+        score.setPartialScoreTwo(Double.parseDouble(noteTwo.getText().toString()));
+        score.setPartialScoreThree(Double.parseDouble(noteThree.getText().toString()));
+
+        resultNote = database.getScoreDao().insert(score);
 
         if(result != -1 && resultNote != -1)
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();

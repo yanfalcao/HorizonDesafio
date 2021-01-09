@@ -5,9 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import br.com.yanfalcao.mundialsurf.controller.BatteryController;
-import br.com.yanfalcao.mundialsurf.controller.NoteController;
 import br.com.yanfalcao.mundialsurf.controller.SurferController;
-import br.com.yanfalcao.mundialsurf.controller.WaveController;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DATA_BASE = "MundialSurf";
@@ -22,8 +20,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         SurferController.createSurferTable(db);
         BatteryController.createBatteryTable(db);
-        WaveController.createWaveTable(db);
-        NoteController.createNoteTable(db);
     }
 
     @Override

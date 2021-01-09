@@ -20,7 +20,7 @@
         <activity android:name=".core.surferEdition.view.EditSurferActivity" />
         <activity android:name=".core.surferCreation.view.NewSurferActivity" />
         <activity android:name=".core.hit.view.HitActivity" />
-        <activity android:name=".core.scoreCreation.view.RegisterWaveActivity" />
+        <activity android:name=".core.scoreCreation.view.ScoreCreationActivity" />
         <activity android:name=".core.surfer.view.SurfersListActivity" />
     </application>
 

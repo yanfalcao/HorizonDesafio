@@ -9,9 +9,11 @@ import androidx.room.RoomDatabase;
 import br.com.yanfalcao.mundialsurf.model.hit.Hit;
 import br.com.yanfalcao.mundialsurf.model.hit.HitDao;
 import br.com.yanfalcao.mundialsurf.model.score.Score;
+import br.com.yanfalcao.mundialsurf.model.score.ScoreDao;
 import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 import br.com.yanfalcao.mundialsurf.model.surfer.SurferDao;
 import br.com.yanfalcao.mundialsurf.model.wave.Wave;
+import br.com.yanfalcao.mundialsurf.model.wave.WaveDao;
 
 @Database(version = 1, entities = {Hit.class, Score.class, Surfer.class, Wave.class})
 public abstract class RoomData extends RoomDatabase {
@@ -29,4 +31,6 @@ public abstract class RoomData extends RoomDatabase {
 
     public abstract HitDao getHitDao();
     public abstract SurferDao getSurferDao();
+    public abstract ScoreDao getScoreDao();
+    public abstract WaveDao getWaveDao();
 }

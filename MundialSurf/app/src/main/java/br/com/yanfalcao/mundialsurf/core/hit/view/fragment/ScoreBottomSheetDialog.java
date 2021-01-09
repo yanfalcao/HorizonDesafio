@@ -18,7 +18,7 @@ import java.util.Map;
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.controller.BatteryController;
 import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
-import br.com.yanfalcao.mundialsurf.core.scoreCreation.view.RegisterWaveActivity;
+import br.com.yanfalcao.mundialsurf.core.scoreCreation.view.ScoreCreationActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -83,7 +83,7 @@ public class ScoreBottomSheetDialog extends BottomSheetDialogFragment {
 
     @OnClick(R.id.new_score_buttom)
     public void onClickNewScore(View view){
-        Intent intent = new Intent(new Intent(view.getContext(), RegisterWaveActivity.class));
+        Intent intent = new Intent(new Intent(view.getContext(), ScoreCreationActivity.class));
         Bundle extras = new Bundle();
 
         extras.putString("idSurferOne", map.get("idSurferOne").toString());

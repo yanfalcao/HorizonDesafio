@@ -1,6 +1,5 @@
 package br.com.yanfalcao.mundialsurf.controller;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
