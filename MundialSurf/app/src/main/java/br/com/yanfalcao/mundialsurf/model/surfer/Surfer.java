@@ -1,5 +1,6 @@
 package br.com.yanfalcao.mundialsurf.model.surfer;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -11,9 +12,11 @@ public class Surfer {
     @ColumnInfo(name = "_id")
     private int id;
 
+    @NonNull
     @ColumnInfo(name = "nome")
     private String name;
 
+    @NonNull
     @ColumnInfo(name = "pais")
     private String country;
 

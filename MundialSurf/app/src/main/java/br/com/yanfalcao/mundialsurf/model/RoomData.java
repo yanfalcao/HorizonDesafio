@@ -15,7 +15,7 @@ import br.com.yanfalcao.mundialsurf.model.surfer.SurferDao;
 import br.com.yanfalcao.mundialsurf.model.wave.Wave;
 import br.com.yanfalcao.mundialsurf.model.wave.WaveDao;
 
-@Database(version = 1, entities = {Hit.class, Score.class, Surfer.class, Wave.class})
+@Database(version = 1, exportSchema = false, entities = {Hit.class, Score.class, Surfer.class, Wave.class})
 public abstract class RoomData extends RoomDatabase {
     private static final String DATA_BASE = "MundialSurfDataBase";
     private static RoomData database;

@@ -70,7 +70,7 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:hint="Partial Score 1"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:background="@drawable/db_gradient_edit"/>
             </LinearLayout>
 
@@ -87,7 +87,7 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:hint="Partial Score 2"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:background="@drawable/db_gradient_edit"/>
             </LinearLayout>
 
@@ -104,7 +104,7 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:hint="Partial Score 3"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:background="@drawable/db_gradient_edit"/>
             </LinearLayout>
 

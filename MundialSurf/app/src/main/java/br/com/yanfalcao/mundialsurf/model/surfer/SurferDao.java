@@ -17,7 +17,7 @@ public interface SurferDao {
     public Surfer getById(int id);
 
     @Insert
-    public int insert(Surfer surfer);
+    public long insert(Surfer surfer);
 
     @Update
     public int update(Surfer surfer);

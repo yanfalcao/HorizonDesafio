@@ -14,27 +14,25 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-import java.util.Map;
-
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.controller.BatteryController;
+import br.com.yanfalcao.mundialsurf.core.hit.HitContract;
+import br.com.yanfalcao.mundialsurf.core.hit.presenter.HitPresenter;
 import br.com.yanfalcao.mundialsurf.core.hitCreation.view.HitCreationActivity;
-import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
 import br.com.yanfalcao.mundialsurf.core.hit.view.hitRecycleView.LineAdapterHit;
+import br.com.yanfalcao.mundialsurf.model.RoomData;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HitActivity extends AppCompatActivity {
+public class HitActivity extends AppCompatActivity implements HitContract.View {
 
     @BindView(R.id.recycler_view_layout) RecyclerView mRecyclerView;
     @BindView(R.id.toolbar) Toolbar toolbar;
 
-    private DataBaseHelper helper;
-
     private LineAdapterHit mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private HitContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -43,10 +41,10 @@ public class HitActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Battery");
+        getSupportActionBar().setTitle("Hit");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        helper = new DataBaseHelper(this);
+        presenter = new HitPresenter(RoomData.getInstance(this), this);
 
         setupRecycler();
     }
@@ -90,28 +88,19 @@ public class HitActivity extends AppCompatActivity {
 
     @Override
     protected void onRestart(){
-        mAdapter = new LineAdapterHit(getSupportFragmentManager(), getListBatteries());
+        presenter.restartHitList();
+        mAdapter = new LineAdapterHit(getSupportFragmentManager(), presenter);
         mRecyclerView.invalidate();
         mRecyclerView.setAdapter(null);
         mRecyclerView.setAdapter(mAdapter);
         super.onRestart();
     }
 
-    @Override
-    protected void onDestroy(){
-        helper.close();
-        super.onDestroy();
-    }
-
     private void setupRecycler(){
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new LineAdapterHit(getSupportFragmentManager(), getListBatteries());
+        mAdapter = new LineAdapterHit(getSupportFragmentManager(), presenter);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-    private List<Map<String, Object>> getListBatteries() {
-        return BatteryController.selectBatteries(helper,"idBattery", "surfer1", "surfer2");
     }
 }

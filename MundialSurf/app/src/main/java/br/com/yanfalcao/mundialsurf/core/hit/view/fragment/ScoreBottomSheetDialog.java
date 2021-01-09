@@ -13,17 +13,21 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
-import br.com.yanfalcao.mundialsurf.controller.BatteryController;
-import br.com.yanfalcao.mundialsurf.model.DataBaseHelper;
+import br.com.yanfalcao.mundialsurf.constants.SurferEnum;
+import br.com.yanfalcao.mundialsurf.core.hit.HitContract;
 import br.com.yanfalcao.mundialsurf.core.scoreCreation.view.ScoreCreationActivity;
+import br.com.yanfalcao.mundialsurf.model.score.Score;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ScoreBottomSheetDialog extends BottomSheetDialogFragment {
+
     @BindView(R.id.surfer_one_name) protected TextView surferOneName;
     @BindView(R.id.surfer_two_name) protected TextView surferTwoName;
 
@@ -50,10 +54,12 @@ public class ScoreBottomSheetDialog extends BottomSheetDialogFragment {
     @BindView(R.id.crown_surfer_one) protected ImageView crownSurferOne;
     @BindView(R.id.crown_surfer_two) protected ImageView crownSurferTwo;
 
-    private Map<String, Object> map;
+    private HitContract.Presenter presenter;
+    private int position;
 
-    public ScoreBottomSheetDialog(Map<String, Object> map){
-        this.map = map;
+    public ScoreBottomSheetDialog(HitContract.Presenter presenter, int position){
+        this.presenter = presenter;
+        this.position = position;
     }
 
     @Nullable
@@ -62,14 +68,53 @@ public class ScoreBottomSheetDialog extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.fragment_score, container, false);
         ButterKnife.bind(this, view);
 
-        surferOneName.setText(map.get("surfer1").toString());
-        surferTwoName.setText(map.get("surfer2").toString());
+        surferOneName.setText(presenter.surferOneName(this.position));
+        surferTwoName.setText(presenter.surferTwoName(this.position));
 
-        int result = BatteryController.getWinner(new DataBaseHelper(view.getContext()), map.get("idBattery").toString());
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        List<Score> scoreList = presenter.getScoreSurferOne(this.position);
 
-        if(result == 1){
+        if(scoreList != null && !scoreList.isEmpty()){
+            Score score = scoreList.get(0);
+            partialOneNoteOneSurferOne.setText(decimalFormat.format(score.getPartialScoreOne()));
+            partialTwoNoteOneSurferOne.setText(decimalFormat.format(score.getPartialScoreTwo()));
+            partialThreeNoteOneSurferOne.setText(decimalFormat.format(score.getPartialScoreTwo()));
+            averageNoteOneSurferOne.setText(decimalFormat.format(score.getAverage()));
+
+            if(scoreList.size() > 1){
+                score = scoreList.get(1);
+
+                partialOneNoteTwoSurferOne.setText(decimalFormat.format(score.getPartialScoreOne()));
+                partialTwoNoteTwoSurferOne.setText(decimalFormat.format(score.getPartialScoreTwo()));
+                partialThreeNoteTwoSurferOne.setText(decimalFormat.format(score.getPartialScoreThree()));
+                averageNoteTwoSurferOne.setText(decimalFormat.format(score.getAverage()));
+            }
+        }
+
+        scoreList = presenter.getScoreSurferTwo(this.position);
+
+        if(scoreList != null && !scoreList.isEmpty()){
+            Score score = scoreList.get(0);
+            partialOneNoteOneSurferTwo.setText(decimalFormat.format(score.getPartialScoreOne()));
+            partialTwoNoteOneSurferTwo.setText(decimalFormat.format(score.getPartialScoreTwo()));
+            partialThreeNoteOneSurferTwo.setText(decimalFormat.format(score.getPartialScoreTwo()));
+            averageNoteOneSurferTwo.setText(decimalFormat.format(score.getAverage()));
+
+            if(scoreList.size() > 1){
+                score = scoreList.get(1);
+
+                partialOneNoteTwoSurferTwo.setText(decimalFormat.format(score.getPartialScoreOne()));
+                partialTwoNoteTwoSurferTwo.setText(decimalFormat.format(score.getPartialScoreTwo()));
+                partialThreeNoteTwoSurferTwo.setText(decimalFormat.format(score.getPartialScoreThree()));
+                averageNoteTwoSurferTwo.setText(decimalFormat.format(score.getAverage()));
+            }
+        }
+
+        SurferEnum surferEnum = presenter.getWinner(this.position);
+
+        if(surferEnum == SurferEnum.SURFER_ONE){
             crownSurferOne.setVisibility(View.VISIBLE);
-        }else if(result == 2){
+        }else if(surferEnum == SurferEnum.SURFER_TWO){
             crownSurferTwo.setVisibility(View.VISIBLE);
         }
 
@@ -86,11 +131,9 @@ public class ScoreBottomSheetDialog extends BottomSheetDialogFragment {
         Intent intent = new Intent(new Intent(view.getContext(), ScoreCreationActivity.class));
         Bundle extras = new Bundle();
 
-        extras.putString("idSurferOne", map.get("idSurferOne").toString());
-        extras.putString("idSurferTwo", map.get("idSurferTwo").toString());
-        extras.putString("nameSurferOne", map.get("surfer1").toString());
-        extras.putString("nameSurferTwo", map.get("surfer2").toString());
-        extras.putString("idBattery", map.get("idBattery").toString());
+        extras.putInt("idSurferOne", presenter.getHitAt(position).getIdSurferOne());
+        extras.putInt("idSurferTwo", presenter.getHitAt(position).getIdSurferTwo());
+        extras.putInt("idBattery", presenter.getHitAt(position).getId());
 
         intent.putExtras(extras);
         view.getContext().startActivity(intent);

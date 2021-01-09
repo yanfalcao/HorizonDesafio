@@ -15,17 +15,17 @@ import java.util.List;
 import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
+import br.com.yanfalcao.mundialsurf.core.hit.HitContract;
 import br.com.yanfalcao.mundialsurf.core.hit.view.fragment.ScoreBottomSheetDialog;
+import br.com.yanfalcao.mundialsurf.core.hitCreation.presenter.HitCreationPresenter;
 
 public class LineAdapterHit extends RecyclerView.Adapter<LineHolderHit> implements Filterable {
-    private List<Map<String, Object>> mBatteries;
-    private List<Map<String, Object>> fullBatteries;
+    private HitContract.Presenter presenter;
     private FragmentManager fragmentManager;
 
-    public LineAdapterHit(FragmentManager fragmentManager, List<Map<String, Object>> batteries){
+    public LineAdapterHit(FragmentManager fragmentManager, HitContract.Presenter presenter){
         this.fragmentManager = fragmentManager;
-        mBatteries = batteries;
-        fullBatteries = new ArrayList<>(batteries);
+        this.presenter = presenter;
     }
 
     @NonNull
@@ -38,17 +38,16 @@ public class LineAdapterHit extends RecyclerView.Adapter<LineHolderHit> implemen
     @Override
     public void onBindViewHolder(@NonNull LineHolderHit holder, int i) {
         int count = i + 1;
-        final Map<String, Object> map = mBatteries.get(i);
 
         holder.idBattery.setText(String.valueOf(count));
-        holder.surferOne.setText(map.get("surfer1").toString());
-        holder.surferTwo.setText(map.get("surfer2").toString());
+        holder.surferOne.setText(presenter.surferOneName(i));
+        holder.surferTwo.setText(presenter.surferTwoName(i));
 
-        if(! map.get("surfer1").toString().equals("Empty")){
+        if(! presenter.isEmptyHits()){
             holder.infoImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ScoreBottomSheetDialog bottomSheet = new ScoreBottomSheetDialog(map);
+                    ScoreBottomSheetDialog bottomSheet = new ScoreBottomSheetDialog(presenter, i);
                     bottomSheet.show(fragmentManager, "scoreBottomSheet");
                 }
             });
@@ -57,7 +56,7 @@ public class LineAdapterHit extends RecyclerView.Adapter<LineHolderHit> implemen
 
     @Override
     public int getItemCount() {
-        return mBatteries != null ? mBatteries.size() : 0;
+        return presenter.getHitsCount();
     }
 
     @Override
@@ -68,33 +67,15 @@ public class LineAdapterHit extends RecyclerView.Adapter<LineHolderHit> implemen
     private Filter itemFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<Map<String, Object>> filteredList = new ArrayList<>();
-
-            if(constraint == null || constraint.length() == 0)
-                filteredList.addAll(fullBatteries);
-            else{
-                String filter = constraint.toString().toLowerCase().trim();
-
-                for(Map<String, Object> item : fullBatteries) {
-                    if(item.get("surfer1").toString().toLowerCase().contains(filter)) {
-                        filteredList.add(item);
-                    }
-                    if(item.get("surfer2").toString().toLowerCase().contains(filter)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-
             FilterResults results = new FilterResults();
-            results.values = filteredList;
+            results.values = presenter.filter(constraint);
 
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            mBatteries.clear();
-            mBatteries.addAll((List)results.values);
+            presenter.setHitsFilter((List)results.values);
             notifyDataSetChanged();
         }
     };

@@ -10,24 +10,23 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import br.com.yanfalcao.mundialsurf.R;
+import br.com.yanfalcao.mundialsurf.core.scoreCreation.ScoreCreationContract;
+import br.com.yanfalcao.mundialsurf.core.scoreCreation.presenter.ScoreCreationPresenter;
 import br.com.yanfalcao.mundialsurf.model.RoomData;
-import br.com.yanfalcao.mundialsurf.model.score.Score;
-import br.com.yanfalcao.mundialsurf.model.wave.Wave;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import java.util.ArrayList;
-
-public class ScoreCreationActivity extends AppCompatActivity {
+public class ScoreCreationActivity extends AppCompatActivity implements ScoreCreationContract.View {
 
     @BindView(R.id.chooseSurfer) Spinner chooseSurfer;
     @BindView(R.id.noteOneEditText) EditText noteOne;
     @BindView(R.id.noteTwoEditText) EditText noteTwo;
     @BindView(R.id.noteThreeEditText) EditText noteThree;
     @BindView(R.id.toolbar) Toolbar toolbar;
-    private ArrayList<String> surfers;
+
     private RoomData database;
+    private ScoreCreationContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +39,19 @@ public class ScoreCreationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         database = RoomData.getInstance(this);
-        surfers = getSurfers();
+        presenter = new ScoreCreationPresenter(
+                RoomData.getInstance(this),
+                this,
+                getIntent().getIntExtra("idSurferOne", -1),
+                getIntent().getIntExtra("idSurferTwo", -1)
+        );
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this,
                 android.R.layout.simple_spinner_dropdown_item,
-                surfers);
+                presenter.getSurfersList()
+        );
+
         chooseSurfer.setAdapter(adapter);
     }
 
@@ -56,38 +63,33 @@ public class ScoreCreationActivity extends AppCompatActivity {
 
     @OnClick(R.id.save)
     public void save(View view) {
-        long result, resultNote;
-        Wave wave = new Wave();
-        Score score = new Score();
+        int idHit = getIntent().getIntExtra("idBattery", -1);
 
-        wave.setIdHit(Integer.parseInt(getIntent().getStringExtra("idBattery")));
+        if(presenter.saveWave(idHit, chooseSurfer.getSelectedItemPosition())){
+            String partial1 = noteOne.getText().toString();
+            String partial2 = noteTwo.getText().toString();
+            String partial3 = noteThree.getText().toString();
 
-        if(getIntent().getStringExtra("nameSurferOne").equals(chooseSurfer.getSelectedItem().toString())) {
-            wave.setIdSurfer(Integer.parseInt(getIntent().getStringExtra("idSurferOne")));
-            result = database.getWaveDao().insert(wave);
+            if(presenter.validateFields(partial1, partial2, partial3)){
+                if(presenter.saveScore(partial1, partial2, partial3)){
+                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else {
+                    Toast.makeText(this, "ERROR: unexpected error while processing the request", Toast.LENGTH_SHORT).show();
+                }
+            }
         }else {
-            wave.setIdSurfer(Integer.parseInt(getIntent().getStringExtra("idSurferTwo")));
-            result = database.getWaveDao().insert(wave);
+            Toast.makeText(this, "ERROR: unexpected error while processing the request", Toast.LENGTH_SHORT).show();
         }
-
-        score.setIdWave(database.getWaveDao().getLastWaveId());
-        score.setPartialScoreOne(Double.parseDouble(noteOne.getText().toString()));
-        score.setPartialScoreTwo(Double.parseDouble(noteTwo.getText().toString()));
-        score.setPartialScoreThree(Double.parseDouble(noteThree.getText().toString()));
-
-        resultNote = database.getScoreDao().insert(score);
-
-        if(result != -1 && resultNote != -1)
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(this, "DataBase Error", Toast.LENGTH_SHORT).show();
     }
 
-    private ArrayList<String> getSurfers(){
-        ArrayList<String> names = new ArrayList<>();
-        names.add(getIntent().getStringExtra("nameSurferOne"));
-        names.add(getIntent().getStringExtra("nameSurferTwo"));
+    @Override
+    public void setErrorPartialScoreEmpty() {
+        Toast.makeText(this, "ERROR: Fill the field Partial Score.", Toast.LENGTH_SHORT).show();
+    }
 
-        return names;
+    @Override
+    public void setErrorPartialScoreType() {
+        Toast.makeText(this, "ERROR: Incorrect type in field Partial Score.", Toast.LENGTH_SHORT).show();
     }
 }

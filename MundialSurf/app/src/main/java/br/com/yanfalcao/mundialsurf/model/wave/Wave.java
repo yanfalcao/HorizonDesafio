@@ -1,5 +1,6 @@
 package br.com.yanfalcao.mundialsurf.model.wave;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -8,27 +9,22 @@ import androidx.room.PrimaryKey;
 import br.com.yanfalcao.mundialsurf.model.hit.Hit;
 import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 
-@Entity(tableName = "onda")
+@Entity(tableName = "onda", foreignKeys = {
+        @ForeignKey(entity = Hit.class, parentColumns = "_id", childColumns = "bateria_id", onDelete = ForeignKey.CASCADE),
+        @ForeignKey(entity = Surfer.class, parentColumns = "_id", childColumns = "surfista_id", onDelete = ForeignKey.CASCADE)
+})
 public class Wave {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
     private int id;
 
+    @NonNull
     @ColumnInfo(name = "bateria_id")
-    @ForeignKey(entity = Hit.class,
-            parentColumns = "_id",
-            childColumns = "bateria_id",
-            onUpdate = ForeignKey.CASCADE,
-            onDelete = ForeignKey.CASCADE)
     private int idHit;
 
+    @NonNull
     @ColumnInfo(name = "surfista_id")
-    @ForeignKey(entity = Surfer.class,
-            parentColumns = "_id",
-            childColumns = "surfista_id",
-            onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE)
     private int idSurfer;
 
 

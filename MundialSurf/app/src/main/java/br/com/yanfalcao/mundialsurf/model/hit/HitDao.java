@@ -13,5 +13,5 @@ public interface HitDao {
     public List<Hit> getAll();
 
     @Insert
-    public int insert(Hit hit);
+    public long insert(Hit hit);
 }
