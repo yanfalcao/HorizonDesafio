@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mundial de Surf</string>
+    <string name="app_name">Mundial Surf</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_edit_surfer">EditSurferActivity</string>
     <string name="title_activity_test">test</string>
