@@ -47,8 +47,8 @@ public class MainMenuAdapter extends PagerAdapter {
         ImageView image = view.findViewById(R.id.image_main_menu);
         TextView title = view.findViewById(R.id.title_main_menu);
 
-        image.setImageResource((int) models.get(position).get(MainMenu.IMAGE));
-        title.setText((String) models.get(position).get(MainMenu.TITLE));
+        image.setImageResource((int) models.get(position).get(MainMenuActivity.IMAGE));
+        title.setText((String) models.get(position).get(MainMenuActivity.TITLE));
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

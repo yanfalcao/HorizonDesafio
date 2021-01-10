@@ -41,7 +41,7 @@ public class HitActivity extends AppCompatActivity implements HitContract.View {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Hit");
+        getSupportActionBar().setTitle(getString(R.string.hit));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         presenter = new HitPresenter(RoomData.getInstance(this), this);

@@ -85,9 +85,9 @@ public class HitCreationActivity extends AppCompatActivity implements HitCreatio
 
         if(presenter.validateFields(positionOne, positionTwo)) {
             if (presenter.save(positionOne, positionTwo)) {
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.success), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "DATABASE ERROR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.data_error), Toast.LENGTH_SHORT).show();
             }
             finish();
         }

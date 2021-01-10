@@ -15,7 +15,7 @@ import br.com.yanfalcao.mundialsurf.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainMenu extends AppCompatActivity {
+public class MainMenuActivity extends AppCompatActivity {
     public static String IMAGE = "IMAGE";
     public static String TITLE = "TITLE";
 
@@ -70,12 +70,12 @@ public class MainMenu extends AppCompatActivity {
         models = new ArrayList<>();
 
         item.put(IMAGE, R.drawable.img_woman_surfer);
-        item.put(TITLE, "Surfers Register");
+        item.put(TITLE, getString(R.string.surfer_menu));
         models.add(item);
 
         item = new HashMap<>();
         item.put(IMAGE, R.drawable.img_hit);
-        item.put(TITLE, "Hit\nRegister");
+        item.put(TITLE, getString(R.string.hit_menu));
         models.add(item);
     }
 

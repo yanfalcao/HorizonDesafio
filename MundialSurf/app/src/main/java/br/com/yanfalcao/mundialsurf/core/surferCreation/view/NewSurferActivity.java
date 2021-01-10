@@ -48,9 +48,9 @@ public class NewSurferActivity extends AppCompatActivity implements SurferCreati
 
         if(presenter.validateFields(name, country)){
             if(presenter.save(name, country)) {
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.success), Toast.LENGTH_SHORT).show();
             }else {
-                Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.data_error), Toast.LENGTH_SHORT).show();
             }
             finish();
         }

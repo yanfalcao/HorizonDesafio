@@ -73,14 +73,14 @@ public class ScoreCreationActivity extends AppCompatActivity implements ScoreCre
 
             if(presenter.validateFields(partial1, partial2, partial3)){
                 if(presenter.saveScore(partial1, partial2, partial3)){
-                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.success), Toast.LENGTH_SHORT).show();
                     finish();
                 }else {
-                    Toast.makeText(this, "ERROR: unexpected error while processing the request", Toast.LENGTH_SHORT).show();
+                    InfoDialog.show(this, getString(R.string.unexpected));
                 }
             }
         }else {
-            Toast.makeText(this, "ERROR: unexpected error while processing the request", Toast.LENGTH_SHORT).show();
+            InfoDialog.show(this, getString(R.string.unexpected));
         }
     }
 

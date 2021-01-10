@@ -55,9 +55,9 @@ public class EditSurferActivity extends AppCompatActivity implements SurferEditi
 
         if(presenter.validateFields(name, country)) {
             if (presenter.update(name, country)) {
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.success), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.data_error), Toast.LENGTH_SHORT).show();
             }
             finish();
         }
@@ -65,9 +65,9 @@ public class EditSurferActivity extends AppCompatActivity implements SurferEditi
 
     public void deleteSurfer(View view) {
         if(presenter.delete()) {
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.success), Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(this, "Data Base Error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.data_error), Toast.LENGTH_SHORT).show();
         }
         finish();
     }

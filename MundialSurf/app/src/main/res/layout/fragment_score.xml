@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SCORE"
+            android:text="@string/score"
             android:gravity="center"
             android:layout_gravity="center_vertical"
             android:textSize="26sp"
@@ -74,22 +74,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Partial One" />
+                    android:text="@string/partial_one" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Partial Two" />
+                    android:text="@string/partial_two" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Partial Three" />
+                    android:text="@string/partial_three" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Average" />
+                    android:text="@string/average" />
             </TableRow>
 
             <TableRow
@@ -204,22 +204,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Partial One" />
+                    android:text="@string/partial_one" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Partial Two" />
+                    android:text="@string/partial_two" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Partial Three" />
+                    android:text="@string/partial_three" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Average" />
+                    android:text="@string/average" />
             </TableRow>
 
             <TableRow
@@ -294,7 +294,7 @@
             android:layout_height="wrap_content"
             android:layout_width="250dp"
             android:layout_gravity="center"
-            android:text="NEW SCORE"
+            android:text="@string/new_score"
             android:textColor="@color/white"
             android:textAlignment="center"/>
     </FrameLayout>

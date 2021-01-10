@@ -42,7 +42,7 @@ public class SurfersListActivity extends AppCompatActivity implements SurferCont
         presenter = new SurferPresenter(RoomData.getInstance(this), this);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Surfer");
+        getSupportActionBar().setTitle(getString(R.string.surfer));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setupRecycler();
