@@ -128,14 +128,11 @@ public class ScoreBottomSheetDialog extends BottomSheetDialogFragment {
 
     @OnClick(R.id.new_score_buttom)
     public void onClickNewScore(View view){
-        Intent intent = new Intent(new Intent(view.getContext(), ScoreCreationActivity.class));
-        Bundle extras = new Bundle();
-
-        extras.putInt("idSurferOne", presenter.getHitAt(position).getIdSurferOne());
-        extras.putInt("idSurferTwo", presenter.getHitAt(position).getIdSurferTwo());
-        extras.putInt("idBattery", presenter.getHitAt(position).getId());
-
-        intent.putExtras(extras);
-        view.getContext().startActivity(intent);
+        ScoreCreationActivity.startActivity(
+                view.getContext(),
+                presenter.getHitAt(position).getIdSurferOne(),
+                presenter.getHitAt(position).getIdSurferTwo(),
+                presenter.getHitAt(position).getId()
+        );
     }
 }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import br.com.yanfalcao.mundialsurf.R;
+import br.com.yanfalcao.mundialsurf.core.hit.view.HitActivity;
 import br.com.yanfalcao.mundialsurf.core.surfer.SurferContract;
 import br.com.yanfalcao.mundialsurf.core.surfer.presenter.SurferPresenter;
 import br.com.yanfalcao.mundialsurf.core.surfer.view.surferRecycleView.LineAdapterSurfer;
@@ -32,6 +33,10 @@ public class SurfersListActivity extends AppCompatActivity implements SurferCont
     private LineAdapterSurfer mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private SurferContract.Presenter presenter;
+
+    public static void startActivity(Context context){
+        context.startActivity(new Intent(context, SurfersListActivity.class));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +67,9 @@ public class SurfersListActivity extends AppCompatActivity implements SurferCont
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public void clickOnNewSurfers(View view) { startActivity(new Intent(this, NewSurferActivity.class)); }
+    public void clickOnNewSurfers(View view) {
+        NewSurferActivity.startActivity(this);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

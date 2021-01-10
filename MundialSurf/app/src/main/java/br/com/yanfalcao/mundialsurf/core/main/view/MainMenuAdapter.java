@@ -55,11 +55,11 @@ public class MainMenuAdapter extends PagerAdapter {
             public void onClick(View v) {
                 switch(position){
                     case 0:
-                        context.startActivity(new Intent(context, SurfersListActivity.class));
+                        SurfersListActivity.startActivity(context);
                         break;
 
                     case 1:
-                        context.startActivity(new Intent(context, HitActivity.class));
+                        HitActivity.startActivity(context);
                         break;
                 }
             }

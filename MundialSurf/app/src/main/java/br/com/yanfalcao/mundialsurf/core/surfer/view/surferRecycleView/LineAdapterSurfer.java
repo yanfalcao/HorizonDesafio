@@ -43,12 +43,7 @@ public class LineAdapterSurfer extends RecyclerView.Adapter<LineHolder> implemen
             holder.setting.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), EditSurferActivity.class);
-                    Bundle extras = new Bundle();
-                    extras.putInt("id", presenter.getSurferIdAt(i));
-
-                    intent.putExtras(extras);
-                    v.getContext().startActivity(intent);
+                    EditSurferActivity.startActivity(v.getContext(), presenter.getSurferIdAt(i));
                 }
             });
         }

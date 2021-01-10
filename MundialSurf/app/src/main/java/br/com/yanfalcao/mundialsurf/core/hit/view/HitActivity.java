@@ -34,6 +34,10 @@ public class HitActivity extends AppCompatActivity implements HitContract.View {
 
     private HitContract.Presenter presenter;
 
+    public static void startActivity(Context context){
+        context.startActivity(new Intent(context, HitActivity.class));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -57,7 +61,7 @@ public class HitActivity extends AppCompatActivity implements HitContract.View {
 
     @OnClick(R.id.floatingActionButton)
     public void toolbarClick(){
-        startActivity(new Intent(this, HitCreationActivity.class));
+        HitCreationActivity.startActivity(this);
     }
 
     @Override

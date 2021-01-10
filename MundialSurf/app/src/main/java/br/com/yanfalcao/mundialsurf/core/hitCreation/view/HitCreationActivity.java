@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +28,10 @@ public class HitCreationActivity extends AppCompatActivity implements HitCreatio
     @BindView(R.id.toolbar) Toolbar toolbar;
 
     private HitCreationContract.presenter presenter;
+
+    public static void startActivity(Context context){
+        context.startActivity(new Intent(context, HitCreationActivity.class));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

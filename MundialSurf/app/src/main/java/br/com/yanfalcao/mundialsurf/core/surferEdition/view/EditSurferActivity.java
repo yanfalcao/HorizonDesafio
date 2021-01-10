@@ -1,5 +1,8 @@
 package br.com.yanfalcao.mundialsurf.core.surferEdition.view;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,12 +13,13 @@ import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.core.surferEdition.SurferEditionContract;
 import br.com.yanfalcao.mundialsurf.core.surferEdition.presenter.SurferEditionPresenter;
 import br.com.yanfalcao.mundialsurf.model.RoomData;
-import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
 import br.com.yanfalcao.mundialsurf.utils.InfoDialog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class EditSurferActivity extends AppCompatActivity implements SurferEditionContract.View {
+
+    private static String SURFER_ID = "surferId";
 
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.name) EditText nameEdit;
@@ -23,6 +27,19 @@ public class EditSurferActivity extends AppCompatActivity implements SurferEditi
 
     private SurferEditionContract.Presenter presenter;
     RoomData database;
+
+    public static void startActivity(Context context, int idSurfer){
+        Intent intent = new Intent(context, EditSurferActivity.class);
+        Bundle extras = new Bundle();
+        extras.putInt(SURFER_ID, idSurfer);
+
+        intent.putExtras(extras);
+        context.startActivity(intent);
+    }
+
+    public static int getExtraIdSurfer(Activity activity){
+        return activity.getIntent().getIntExtra(SURFER_ID, 0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +55,7 @@ public class EditSurferActivity extends AppCompatActivity implements SurferEditi
         presenter = new SurferEditionPresenter(
                 RoomData.getInstance(this),
                 this,
-                getIntent().getIntExtra("id", 0));
+                getExtraIdSurfer(this));
 
         presenter.fillFields();
     }
