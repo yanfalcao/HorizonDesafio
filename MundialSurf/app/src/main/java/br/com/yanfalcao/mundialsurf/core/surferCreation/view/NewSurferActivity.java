@@ -1,6 +1,7 @@
 package br.com.yanfalcao.mundialsurf.core.surferCreation.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import android.view.View;
@@ -10,7 +11,7 @@ import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.core.surferCreation.SurferCreationContract;
 import br.com.yanfalcao.mundialsurf.core.surferCreation.presenter.SurferCreationPresenter;
 import br.com.yanfalcao.mundialsurf.model.RoomData;
-import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
+import br.com.yanfalcao.mundialsurf.utils.InfoDialog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -61,6 +62,6 @@ public class NewSurferActivity extends AppCompatActivity implements SurferCreati
 
     @Override
     public void setErrorEmptyFields() {
-        Toast.makeText(this, "ERROR: Exist empty fields.", Toast.LENGTH_SHORT).show();
+        InfoDialog.show(this, getString(R.string.emptyFields));
     }
 }

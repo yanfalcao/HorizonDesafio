@@ -14,6 +14,7 @@ import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.core.hitCreation.HitCreationContract;
 import br.com.yanfalcao.mundialsurf.core.hitCreation.presenter.HitCreationPresenter;
 import br.com.yanfalcao.mundialsurf.model.RoomData;
+import br.com.yanfalcao.mundialsurf.utils.InfoDialog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -99,16 +100,16 @@ public class HitCreationActivity extends AppCompatActivity implements HitCreatio
 
     @Override
     public void setErrorWithoutSurfer() {
-        Toast.makeText(this, "ERROR: DO NOT HAVE SURFER(S) ", Toast.LENGTH_SHORT).show();
+        InfoDialog.show(this, getString(R.string.withoutSurfer));
     }
 
     @Override
     public void setErrorSurfersSame() {
-        Toast.makeText(this, "ERROR: THE SURFERS ARE SAME", Toast.LENGTH_SHORT).show();
+        InfoDialog.show(this, getString(R.string.sameSurfers));
     }
 
     @Override
     public void setErrorSelectSurfer() {
-        Toast.makeText(this, "ERROR: SELECT A SURFER", Toast.LENGTH_SHORT).show();
+        InfoDialog.show(this, getString(R.string.withoutSurfer));
     }
 }

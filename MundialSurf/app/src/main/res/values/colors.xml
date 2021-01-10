@@ -28,5 +28,6 @@
     <color name="floatingButton">#02D0FA</color>
     <color name="listSurfer">#132D7D</color>
     <color name="backgoundScreen">#F4F4F4</color>
+    <color name="infoColor">#feca57</color>
 
 </resources>

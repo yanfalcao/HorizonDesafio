@@ -3,4 +3,10 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_edit_surfer">EditSurferActivity</string>
     <string name="title_activity_test">test</string>
+    <string name="alert">Alert</string>
+    <string name="emptyFields">Please fill in the fields.</string>
+    <string name="withoutSurfer">Please fill in the field with a surfer.</string>
+    <string name="sameSurfers">Sorry, but the surfers are the same.</string>
+    <string name="incorrectType">The field was filled in with an incorrect type.</string>
+    <string name="ok">Ok</string>
 </resources>

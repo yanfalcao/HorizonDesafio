@@ -13,6 +13,7 @@ import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.core.scoreCreation.ScoreCreationContract;
 import br.com.yanfalcao.mundialsurf.core.scoreCreation.presenter.ScoreCreationPresenter;
 import br.com.yanfalcao.mundialsurf.model.RoomData;
+import br.com.yanfalcao.mundialsurf.utils.InfoDialog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -85,11 +86,11 @@ public class ScoreCreationActivity extends AppCompatActivity implements ScoreCre
 
     @Override
     public void setErrorPartialScoreEmpty() {
-        Toast.makeText(this, "ERROR: Fill the field Partial Score.", Toast.LENGTH_SHORT).show();
+        InfoDialog.show(this, getString(R.string.emptyFields));
     }
 
     @Override
     public void setErrorPartialScoreType() {
-        Toast.makeText(this, "ERROR: Incorrect type in field Partial Score.", Toast.LENGTH_SHORT).show();
+        InfoDialog.show(this, getString(R.string.incorrectType));
     }
 }

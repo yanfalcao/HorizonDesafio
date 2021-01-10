@@ -11,6 +11,7 @@ import br.com.yanfalcao.mundialsurf.core.surferEdition.SurferEditionContract;
 import br.com.yanfalcao.mundialsurf.core.surferEdition.presenter.SurferEditionPresenter;
 import br.com.yanfalcao.mundialsurf.model.RoomData;
 import br.com.yanfalcao.mundialsurf.model.surfer.Surfer;
+import br.com.yanfalcao.mundialsurf.utils.InfoDialog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -83,6 +84,6 @@ public class EditSurferActivity extends AppCompatActivity implements SurferEditi
 
     @Override
     public void setErrorFillField() {
-        Toast.makeText(this, "ERROR: Exist empty fields.", Toast.LENGTH_SHORT).show();
+        InfoDialog.show(this, getString(R.string.emptyFields));
     }
 }
