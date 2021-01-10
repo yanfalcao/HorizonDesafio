@@ -30,7 +30,7 @@ public class HitCreationActivity extends AppCompatActivity implements HitCreatio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_battery);
+        setContentView(R.layout.activity_new_hit);
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
@@ -79,7 +79,7 @@ public class HitCreationActivity extends AppCompatActivity implements HitCreatio
     }
 
     @OnClick(R.id.save_hit)
-    public void saveBattery(View v){
+    public void saveHit(View v){
         int positionOne = surferOne.getSelectedItemPosition();
         int positionTwo = surferTwo.getSelectedItemPosition();
 

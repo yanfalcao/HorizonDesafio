@@ -10,14 +10,14 @@ import br.com.yanfalcao.mundialsurf.R;
 
 public class LineHolderHit extends RecyclerView.ViewHolder{
 
-    public TextView idBattery;
+    public TextView idHit;
     public TextView surferOne;
     public TextView surferTwo;
     public ImageView infoImage;
 
     public LineHolderHit(@NonNull View itemView) {
         super(itemView);
-        idBattery = itemView.findViewById(R.id.idBattery);
+        idHit = itemView.findViewById(R.id.idHit);
         surferOne = itemView.findViewById(R.id.surferOne);
         surferTwo = itemView.findViewById(R.id.surferTwo);
         infoImage = itemView.findViewById(R.id.info_icon);

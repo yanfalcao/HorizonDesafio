@@ -17,7 +17,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/idBattery"
+            android:id="@+id/idHit"
             android:text="1"
             android:layout_gravity="center_vertical"
             android:layout_width="35dp"

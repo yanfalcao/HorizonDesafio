@@ -10,14 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import br.com.yanfalcao.mundialsurf.R;
 import br.com.yanfalcao.mundialsurf.core.hit.HitContract;
 import br.com.yanfalcao.mundialsurf.core.hit.view.fragment.ScoreBottomSheetDialog;
-import br.com.yanfalcao.mundialsurf.core.hitCreation.presenter.HitCreationPresenter;
 
 public class LineAdapterHit extends RecyclerView.Adapter<LineHolderHit> implements Filterable {
     private HitContract.Presenter presenter;
@@ -39,7 +36,7 @@ public class LineAdapterHit extends RecyclerView.Adapter<LineHolderHit> implemen
     public void onBindViewHolder(@NonNull LineHolderHit holder, int i) {
         int count = i + 1;
 
-        holder.idBattery.setText(String.valueOf(count));
+        holder.idHit.setText(String.valueOf(count));
         holder.surferOne.setText(presenter.surferOneName(i));
         holder.surferTwo.setText(presenter.surferTwoName(i));
 
