@@ -8,7 +8,7 @@
     android:layout_marginBottom="10dp"
     android:layout_marginTop="2dp"
     android:orientation="horizontal"
-    android:background="@drawable/rount_list_surfer">
+    android:background="@drawable/db_rount_list_surfer">
 
     <FrameLayout
         android:layout_width="50dp"

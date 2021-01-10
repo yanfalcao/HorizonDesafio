@@ -69,12 +69,12 @@ public class MainMenu extends AppCompatActivity {
         Map<String, Object> item = new HashMap<>();
         models = new ArrayList<>();
 
-        item.put(IMAGE, R.drawable.woman_surfer);
+        item.put(IMAGE, R.drawable.img_woman_surfer);
         item.put(TITLE, "Surfers Register");
         models.add(item);
 
         item = new HashMap<>();
-        item.put(IMAGE, R.drawable.batterie);
+        item.put(IMAGE, R.drawable.img_batterie);
         item.put(TITLE, "Battery Register");
         models.add(item);
     }
