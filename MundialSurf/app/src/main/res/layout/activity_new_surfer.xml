@@ -85,6 +85,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/save"
                     android:onClick="saveSurfer"
                     android:background="@drawable/db_gradient_button"
                     android:layout_height="wrap_content"
@@ -103,6 +104,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/cancel"
                     android:onClick="cancelSurfer"
                     android:background="@drawable/db_button_cancel"
                     android:layout_height="wrap_content"

@@ -85,6 +85,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/save"
                     android:onClick="editSurfer"
                     android:background="@drawable/db_gradient_button"
                     android:layout_height="wrap_content"
@@ -103,6 +104,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/delete"
                     android:onClick="deleteSurfer"
                     android:background="@drawable/db_button_delete"
                     android:layout_height="wrap_content"
