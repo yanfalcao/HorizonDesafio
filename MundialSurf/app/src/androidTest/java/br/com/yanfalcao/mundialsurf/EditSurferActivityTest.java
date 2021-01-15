@@ -6,9 +6,11 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 
 import br.com.yanfalcao.mundialsurf.core.surfer.view.SurfersListActivity;
 
@@ -25,6 +27,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static br.com.yanfalcao.mundialsurf.ChildViewAction.clickChildViewWithId;
 
 @RunWith(AndroidJUnit4.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @LargeTest
 public class EditSurferActivityTest {
     @Rule
@@ -43,6 +46,7 @@ public class EditSurferActivityTest {
                 .perform(clearText())
                 .perform(typeText("Brazil"), closeSoftKeyboard());
         onView(withId(R.id.save)).perform(click());
+        onView(withText("Victor Mendes")).check(matches(isDisplayed()));
     }
 
     @Test
