@@ -1,9 +1,9 @@
 <h3>Telas do Aplicativo</h3>
 
-<img src="home.jpeg" height="300">
-<img src="surfer_list.jpeg" height="300">
-<img src="creation_surfer.jpeg" height="300">
-<img src="hit_list.jpeg" height="300">
-<img src="creation_hit.jpeg" height="300">
-<img src="creation_score.jpeg" height="300">
-<img src="winner.jpeg" height="300">
+<img src="menu.jpeg" height="300">
+<img src="surfers.jpeg" height="300">
+<img src="new_surfer.jpeg" height="300">
+<img src="hits.jpeg" height="300">
+<img src="new_hit.jpeg" height="300">
+<img src="new_score.jpeg" height="300">
+<img src="score.jpeg" height="300">
